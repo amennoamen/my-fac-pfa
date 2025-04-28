@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nous contacter - Faculté des Sciences de Bizerte</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables */
+        :root {
+            --dark: #343a40; /* Dark gray */
+            --text-light: #f5f5f5;
+            --primary: #2c3e50;
+            --accent: #05bfdb;
+            --secondary: #3498db;
+            --transition: all 0.3s ease;
+
+            --primary-color: #0056b3;
+            --secondary-color: #003366;
+            --accent-color: #f8f9fa;
+            --text-color: #333;
+            --light-text: #fff;
+            --success-color: #28a745;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Reset et base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* En-tête */
+        /* Header */
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+
+        .logo {
+        position: absolute;
+        top: 1rem;
+        left: 1rem; /* Pour le coin supérieur gauche */
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .logo img {
+            height: 50px;
+            margin-right: 50px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+                /* Responsive Styles */
+         @media (max-width: 992px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                flex-direction: column;
+                top: 0;
+                right: -300px;
+                width: 300px;
+                height: 100vh;
+                background-color: var(--primary);
+                padding: 2rem;
+                transition: right 0.3s;
+                z-index: 999;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+
+            .close-menu {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+
+
+        /* Bannière principale */
+        .banner {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        .banner-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--light-text);
+            width: 80%;
+        }
+
+        .banner-text h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .banner-text p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Section contenu principal */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .contact-info {
+            background-color: var(--accent-color);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-info h2 {
+            margin-bottom: 25px;
+            color: var(--secondary);
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .contact-info h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 15px;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .info-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--secondary-color);
+        }
+
+        .map-container {
+            height: 100%;
+            min-height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Formulaire de contact */
+        .contact-form {
+            background-color: var(--accent-color);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 50px;
+        }
+
+        .contact-form h2 {
+            margin-bottom: 25px;
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .contact-form h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .required::after {
+            content: ' *';
+            color: crimson;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-confirmation {
+            display: none;
+            background-color: var(--success-color);
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Réseaux sociaux */
+        .social {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .social h2 {
+            margin-bottom: 25px;
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .social h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Pied de page */
+         /* Footer */
+         footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 40px;
+        }
+
+        .footer-logo h2 {
+            font-size: 1.2rem;
+        }
+
+        .footer-about p {
+            color: #adb5bd;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #495057;
+            color: white;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary);
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-info-2 p {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 1rem;
+            color: #adb5bd;
+        }
+
+        .contact-info-2 i {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #495057;
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+        /* Animation pour formulaire */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- En-tête avec navigation -->
+       <!-- Header -->
+       <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logo\logotest-removebg-preview.png" alt="Faculty Logo">
+                
+            </div>
+            <h1>Faculté des Sciences de Bizerte</h1>
+            <button class="nav-toggle" id="navToggle">☰</button>
+            <nav>
+                <ul id="mainNav">
+                   <button class="close-menu" id="closeMenu">✕</button>
+                    <li><a href="index.html">Accueil </a></li>
+                    <li><a href="fsb-about.html">Presentation</a></li>
+                    <li><a href="formation/improved-faculty-page-html.html">Formation</a></li>
+                    <li><a href="page-recherche-universitaire (1).html">Recherche</a></li>
+                    <li><a href="#">Contactez nous</a></li>
+                    <li><a href="#" id="loginBtn" class="btn-connecter">Se connecter</a></li>
+                </ul>
+            </nav>
+           <!-- <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>  test button --> 
+        </div>
+    </header>
+
+    <!-- Bannière principale -->
+    <section class="banner">
+        <img src="contact\im3.jpg" alt="Campus universitaire" class="banner-image">
+        <div class="banner-text">
+            <h1>Nous contacter</h1>
+            <p>Nous sommes à votre disposition pour toute information</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Section Coordonnées et Carte -->
+        <section class="main-content">
+            <div class="contact-info">
+                <h2>Nos Coordonnées</h2>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-text">
+                        <h3>Adresse</h3>
+                        <p>Faculté des Sciences de Bizerte<br>7021 jarzouna <br>Bizerte, Tunisie</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="info-text">
+                        <h3>Téléphone</h3>
+                        <p>+216 72 590 717</p>
+                        <p>+216 72 591 906</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-text">
+                        <h3>Email</h3>
+                        <p><a href="mailto:contact@fsb.univ.tn">fsb@fsb.rnu.tn</a></p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="info-text">
+                        <h3>Horaires d'ouverture</h3>
+                        <p>Lundi - Vendredi : 8h - 17h</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <!-- Intégration Google Maps -->
+                
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3175.141779118535!2d9.879659198648756!3d37.26806493619113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e31fcabaf83cd1%3A0x2e1cd92f29a2fa27!2sFacult%C3%A9%20des%20Sciences%20de%20Bizerte!5e0!3m2!1sfr!2stn!4v1741403173058!5m2!1sfr!2stn" ></iframe>
+            </div>
+        </section>
+        
+        <!-- Formulaire de contact -->
+        <section class="contact-form">
+            <h2>Formulaire de contact</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="fullname" class="required">Nom & Prénom</label>
+                    <input type="text" id="fullname" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="required">Email</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Numéro de téléphone</label>
+                    <input type="tel" id="phone" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject" class="required">Objet du message</label>
+                    <select id="subject" class="form-control" required>
+                        <option value="">Sélectionnez un objet</option>
+                        <option value="info">Demande d'information</option>
+                        <option value="technical">Problème technique</option>
+                        <option value="other">Autre</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message" class="required">Message</label>
+                    <textarea id="message" class="form-control" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Envoyer</button>
+                
+                <div id="confirmation" class="form-confirmation">
+                    Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.
+                </div>
+            </form>
+        </section>
+        
+        <!-- Réseaux sociaux -->
+        <section class="social">
+            <h2>Réseaux sociaux</h2>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/FSBizerte" class="social-icon">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.linkedin.com/school/faculte-des-sciences-de-bizerte-universite-de-carthage/" class="social-icon">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Pied de page -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section footer-about">
+                    <div class="footer-logo">
+                        <img src="logo\logotest-removebg-preview.png" alt="Faculty Logo">
+                        <h2>Faculté des Sciences                        </h2>
+                    </div>
+                    <p>Donner les moyens à la prochaine génération de scientifiques et d’innovateurs grâce à l’excellence en matière d’éducation et de recherche.
+                    </p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/FSBizerte"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/school/faculte-des-sciences-de-bizerte-universite-de-carthage/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides </h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil     </a></li>
+                        <li><a href="fsb-about.html#s1">À propos de nous   </a></li>
+                        <li><a href="formation/improved-faculty-page-html.html">Programmes</a></li>
+                        <li><a href="page-recherche-universitaire (1).html">Recherche</a></li>
+                        <li><a href="index.html#ev">Actualités et événements     </a></li>
+                        <li><a href="#">Contactez-nous  </a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Portail étudiant  </a></li>
+                        <li><a href="#">Portail du professeur</a></li>
+                        <li><a href="#">Administration</a></li>
+                        <li><a href="#">Bibliothèque</a></li>
+                    
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contactez-nous                </h3>
+                    <div class="contact-info-2">
+                        <p><i class="fas fa-map-marker-alt"></i> 7021 jarzouna - bizerte</p>
+                        <p><i class="fas fa-phone"></i> +216 72 590 717</p>
+                        <p><i class="fas fa-envelope"></i> fsb@fsb.rnu.tn</p>
+                        <p><i class="fas fa-clock"></i> Monday - Friday: 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Faculty of Sciences of Bizerte. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Script pour le formulaire -->
+    <script>
+                // Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const mainNav = document.getElementById('mainNav');
+        const closeMenu = document.getElementById('closeMenu');
+
+        navToggle.addEventListener('click', () => {
+            mainNav.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mainNav.classList.remove('active');
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const confirmation = document.getElementById('confirmation');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simulation d'envoi du formulaire
+                setTimeout(function() {
+                    confirmation.style.display = 'block';
+                    confirmation.classList.add('animate-in');
+                    contactForm.reset();
+                    
+                    // Cacher le message après 5 secondes
+                    setTimeout(function() {
+                        confirmation.style.display = 'none';
+                    }, 5000);
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

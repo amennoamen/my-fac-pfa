@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Départements - Faculté des Sciences de Bizerte</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="js/main.js" defer></script>
+    <!-- Ajout de Font Awesome pour de meilleures icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Ajout des métadonnées SEO -->
+    <meta name="description" content="Découvrez les départements académiques de la Faculté des Sciences de Bizerte - Mathématiques, Chimie, Physique, Informatique, Sciences de la Vie et Sciences de la Terre.">
+    <meta name="keywords" content="Faculté des Sciences, Bizerte, Tunisie, départements académiques, sciences">
+   
+        
+</head>
+<body>
+    <!-- Header -->
+
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logo\logotest-removebg-preview.png" alt="Faculty Logo">
+                
+            </div>
+            <h1>Faculté des Sciences de Bizerte</h1>
+            <button class="nav-toggle" id="navToggle">☰</button>
+            <nav>
+                <ul id="mainNav">
+                   <button class="close-menu" id="closeMenu">✕</button>
+                    <li><a href="../index.html">Accueil </a></li>
+                    <li><a href="../fsb-about.html">Presentation</a></li>
+                    <li><a href="#">Formation</a></li>
+                    <li><a href="../page-recherche-universitaire (1).html">Recherche</a></li>
+                    <li><a href="page-contact-faculte.html">Contactez nous</a></li>
+                    <li><a href="#" id="loginBtn" class="btn-connecter">Se connecter</a></li>
+                </ul>
+            </nav>
+           <!-- <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>  test button --> 
+        </div>
+    </header>
+
+    <!-- Section des départements -->
+    <section class="departments-section">
+        <div class="container">
+            <h1 class="section-title">Départements de la Faculté</h1>
+            <p class="section-description">Découvrez nos six départements qui offrent une large gamme de programmes d'études et de recherche.</p>
+            
+            <div class="departments-grid">
+                <div class="department-card">
+                    <div class="department-icon">
+                        <img src="images/icones/icons8-pi-64.png" alt="Symbole mathématique Pi">
+                    </div>
+                    <h2>Mathématiques</h2>
+                    <p>De l'algèbre à l'analyse, explorez les fondements théoriques et applications des mathématiques.</p>
+                    <a href="depMath.html" class="btn btn-secondary">Découvrir</a>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-icon">
+                        <img src="images/icones/icons8-chimie-64.png" alt="Symbole chimique">
+                    </div>
+                    <h2>Chimie</h2>
+                    <p>Étude de la composition, structure et propriétés de la matière et leurs transformations.</p>
+                    <a href="depChimie.html" class="btn btn-secondary">Découvrir</a>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-icon">
+                        <img src="images/icones/icons8-physique-64.png" alt="Symbole physique">
+                    </div>
+                    <h2>Physique</h2>
+                    <p>Exploration des lois fondamentales qui gouvernent l'univers, de l'infiniment petit à l'infiniment grand.</p>
+                    <a href="depPhy.html" class="btn btn-secondary">Découvrir</a>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-icon">
+                        <img src="images/icones/icons8-code-64.png" alt="Symbole informatique">
+                    </div>
+                    <h2>Informatique</h2>
+                    <p>Formation en programmation, systèmes d'information, intelligence artificielle et réseaux.</p>
+                    <a href="depInfo.html" class="btn btn-secondary">Découvrir</a>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-icon">
+                        <img src="images/icones/icons8-biotech-64.png" alt="Symbole biologie">
+                    </div>
+                    <h2>Sciences de la Vie</h2>
+                    <p>Étude des organismes vivants, de leur évolution, physiologie et interactions avec l'environnement.</p>
+                    <a href="depSV.html" class="btn btn-secondary">Découvrir</a>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-icon">
+                        <img src="images/icones/icons8-sol-64.png" alt="Symbole géologie">
+                    </div>
+                    <h2>Sciences de la Terre</h2>
+                    <p>Étude de la structure, composition et processus dynamiques de notre planète.</p>
+                    <a href="depSciences de la Terre.html" class="btn btn-secondary">Découvrir</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section des programmes d'études -->
+    <section class="programs-overview">
+        <div class="container">
+            <h2 class="section-title">Nos programmes d'études</h2>
+            <div class="programs-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="licence">Licence</button>
+                    <button class="tab-btn" data-tab="master">Master</button>
+                    <button class="tab-btn" data-tab="doctorat">Doctorat</button>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="licence">
+                        <p>Nos programmes de licence (Bac+3) offrent une formation solide dans les disciplines scientifiques fondamentales.</p>
+                        <a href="licences.html" class="btn btn-outline">Voir toutes les licences</a>
+                    </div>
+                    <div class="tab-pane" id="master">
+                        <p>Nos masters (Bac+5) permettent une spécialisation approfondie dans divers domaines scientifiques de pointe.</p>
+                        <a href="masters.html" class="btn btn-outline">Voir tous les masters</a>
+                    </div>
+                    <div class="tab-pane" id="doctorat">
+                        <p>Nos programmes doctoraux forment les chercheurs de demain dans un environnement scientifique stimulant.</p>
+                        <a href="doctorats.html" class="btn btn-outline">Voir nos programmes doctoraux</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section footer-about">
+                    <div class="footer-logo">
+                        <img src="logo\logotest-removebg-preview.png" alt="Faculty Logo">
+                        <h2>Faculté des Sciences                        </h2>
+                    </div>
+                    <p>Donner les moyens à la prochaine génération de scientifiques et d’innovateurs grâce à l’excellence en matière d’éducation et de recherche.
+                    </p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/FSBizerte"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/school/faculte-des-sciences-de-bizerte-universite-de-carthage/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides </h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Accueil     </a></li>
+                        <li><a href="../fsb-about.html#s1">À propos de nous   </a></li>
+                        <li><a href="#">Programmes</a></li>
+                        <li><a href="../page-recherche-universitaire (1).html">Recherche</a></li>
+                        <li><a href="../index.html#ev">Actualités et événements     </a></li>
+                        <li><a href="../page-contact-faculte.html">Contactez-nous  </a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Portail étudiant  </a></li>
+                        <li><a href="#">Portail du professeur</a></li>
+                        <li><a href="#">Administration</a></li>
+                        <li><a href="#">Bibliothèque</a></li>
+                    
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contactez-nous                </h3>
+                    <div class="contact-info-2">
+                        <p><i class="fas fa-map-marker-alt"></i> 7021 jarzouna - bizerte</p>
+                        <p><i class="fas fa-phone"></i> +216 72 590 717</p>
+                        <p><i class="fas fa-envelope"></i> fsb@fsb.rnu.tn</p>
+                        <p><i class="fas fa-clock"></i> Monday - Friday: 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Faculty of Sciences of Bizerte. All Rights Reserved.</p>
+            </div>
+        </div>
+      </footer>
+      
+
+    <!-- Script pour les onglets -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation mobile
+            const navToggle = document.getElementById('navToggle');
+            const closeMenu = document.getElementById('closeMenu');
+            const mainNav = document.getElementById('mainNav');
+            
+            navToggle.addEventListener('click', function() {
+                mainNav.classList.add('active');
+            });
+            
+            closeMenu.addEventListener('click', function() {
+                mainNav.classList.remove('active');
+            });
+            
+            // Système d'onglets
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Désactiver tous les onglets
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabPanes.forEach(pane => pane.classList.remove('active'));
+                    
+                    // Activer l'onglet cliqué
+                    this.classList.add('active');
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

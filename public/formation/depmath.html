@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Département d'Informatique - Faculté des Sciences de Bizerte</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logo\logotest-removebg-preview.png" alt="Faculty Logo">
+                
+            </div>
+            <h1>Faculté des Sciences de Bizerte</h1>
+            <button class="nav-toggle" id="navToggle">☰</button>
+            <nav>
+                <ul id="mainNav">
+                   <button class="close-menu" id="closeMenu">✕</button>
+                    <li><a href="../index.html">Accueil </a></li>
+                    <li><a href="../fsb-about.html">Presentation</a></li>
+                    <li><a href="improved-faculty-page-html.html">Formation</a></li>
+                    <li><a href="../page-recherche-universitaire (1).html">Recherche</a></li>
+                    <li><a href="../page-contact-faculte.html">Contactez nous</a></li>
+                    <li><a href="#" id="loginBtn" class="btn-connecter">Se connecter</a></li>
+                </ul>
+            </nav>
+           <!-- <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>  test button --> 
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Département de Mathématiques</h1>
+                <p> Excellence en enseignement et en recherche en mathématiques et modélisation.</p>
+            </div>
+        </section>
+
+        <section class="dep">
+            <div class="container">
+                <h2 class="section-title">Département de Mathématiques</h2>
+                
+                <!-- Onglets -->
+                <div class="tabs-container">
+                    <div class="tabs">
+                        <button class="tab active" onclick="openTab(event,'chef')">
+                            <i class="fas fa-user-tie"></i> Chef de département
+                        </button>
+                        <button class="tab" onclick="openTab(event,'Formation')">
+                            <i class="fas fa-book"></i> Formation
+                        </button>
+                        <button class="tab" onclick="openTab(event,'lEns')">
+                            <i class="fas fa-chalkboard-teacher"></i> Liste des enseignants
+                        </button>
+                    </div>
+
+                    <!-- Contenu des onglets -->
+                    <div id="chef" class="tab-content active">
+                        <div class="staff-cards">
+                            <div class="staff-card">
+                                <div class="staff-header">
+                                    <i class="fas fa-user-circle"></i>
+                                    <h3>Directeur du Département</h3>
+                                </div>
+                                <div class="staff-info">
+                                    <h4>DALI BECHIR</h4>
+                                    <ul>
+                                        <li><i class="fas fa-building"></i> Bureau: Département Mathématiques</li>
+                                        <li><i class="fas fa-phone"></i> Poste de Tél: 227</li>
+                                        <li><i class="fas fa-envelope"></i> Email: <a href="mailto:bechir.dali@yahoo.fr">fbechir.dali@yahoo.fr</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="staff-card">
+                                <div class="staff-header">
+                                    <i class="fas fa-user-circle"></i>
+                                    <h3>Secrétariat</h3>
+                                </div>
+                                <div class="staff-info">
+                                    <h4>: MONIA BOUKHMIS</h4>
+                                    <ul>
+                                        <li><i class="fas fa-building"></i>  Bureau: Département Mathématiques</li>
+                                        <li><i class="fas fa-phone"></i> Poste de Tél: 227</li>
+                                        <li><i class="fas fa-envelope"></i> Email: <a href="mailto:"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="Formation" class="tab-content">
+                        <div class="formation-cards">
+                            <div class="formation-category">
+                                <h3><i class="fas fa-graduation-cap"></i> Licences</h3>
+                                <ul>
+                                    <li>
+                                        <a href="http://www.fsb.rnu.tn/images/Maquette_Licence/L_F_Math%C3%A9matiques.pdf">
+                                            <div class="formation-item">
+                                                <i class="fa-solid fa-calculator"></i>
+                                                <span>Licence Fondamentale de Mathématiques</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                   
+                                </ul>
+                            </div>
+
+                            <div class="formation-category">
+                                <h3><i class="fas fa-certificate"></i> Masters</h3>
+                                <ul>
+                                    <li>
+                                        <a href="http://www.fsb.rnu.tn/images/Mastere/mast%C3%A8re/Recherche/Master_de_Recherche_en_Math%C3%A9matiques.pdf">
+                                            <div class="formation-item">
+                                                <i class="fa-solid fa-brain"></i>
+                                                <span>MR: en Mathématiques</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+
+                        
+                        </div>
+                    </div>
+
+                    <div id="lEns" class="tab-content">
+                        <div class="teachers-list">
+                            <h3>Liste des enseignants</h3>
+                            <p>La liste des enseignants sera bientôt disponible.</p>
+                            <!-- Vous pouvez ajouter ici la liste des enseignants -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section footer-about">
+                    <div class="footer-logo">
+                        <img src="logo\logotest-removebg-preview.png" alt="Faculty Logo">
+                        <h2>Faculté des Sciences                        </h2>
+                    </div>
+                    <p>Donner les moyens à la prochaine génération de scientifiques et d’innovateurs grâce à l’excellence en matière d’éducation et de recherche.
+                    </p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/FSBizerte"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/school/faculte-des-sciences-de-bizerte-universite-de-carthage/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides </h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Accueil     </a></li>
+                        <li><a href="../fsb-about.html#s1">À propos de nous   </a></li>
+                        <li><a href="improved-faculty-page-html.html">Programmes</a></li>
+                        <li><a href="../page-recherche-universitaire (1).html">Recherche</a></li>
+                        <li><a href="../index.html#ev">Actualités et événements     </a></li>
+                        <li><a href="../page-contact-faculte.html">Contactez-nous  </a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Portail étudiant  </a></li>
+                        <li><a href="#">Portail du professeur</a></li>
+                        <li><a href="#">Administration</a></li>
+                        <li><a href="#">Bibliothèque</a></li>
+                    
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contactez-nous                </h3>
+                    <div class="contact-info-2">
+                        <p><i class="fas fa-map-marker-alt"></i> 7021 jarzouna - bizerte</p>
+                        <p><i class="fas fa-phone"></i> +216 72 590 717</p>
+                        <p><i class="fas fa-envelope"></i> fsb@fsb.rnu.tn</p>
+                        <p><i class="fas fa-clock"></i> Monday - Friday: 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Faculty of Sciences of Bizerte. All Rights Reserved.</p>
+            </div>
+        </div>
+      </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Masquer tous les contenus des onglets
+            var tabContent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+
+            // Désactiver tous les boutons d'onglets
+            var tabs = document.getElementsByClassName("tab");
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+
+            // Afficher le contenu de l'onglet sélectionné et activer le bouton
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Menu mobile
+        const navToggle = document.getElementById('navToggle');
+            const closeMenu = document.getElementById('closeMenu');
+            const mainNav = document.getElementById('mainNav');
+            
+            navToggle.addEventListener('click', function() {
+                mainNav.classList.add('active');
+            });
+            
+            closeMenu.addEventListener('click', function() {
+                mainNav.classList.remove('active');
+            });
+    </script>
+</body>
+</html>

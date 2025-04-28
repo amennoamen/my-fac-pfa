@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - Faculté des Sciences de Bizerte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --secondary: #3498db;
+            --text-color: #333;
+            --light-color: #f9f9f9;
+            --white: #ffffff;
+            --primary-color: #2c3e50; /* Dark blue */
+            --secondary-color: #3498db; /* Bright blue */
+            --accent-color: #05bfdb; /* Red */
+            --light: #f8f9fa; /* Light gray */
+            --dark: #343a40; /* Dark gray */
+            --success: #28a745; /* Green */
+            --warning: #ffc107; /* Yellow */
+            --danger: #dc3545; /* Red */
+            --gray: #6c757d; /* Gray */
+            --light-gray: #e9ecef; /* Light gray */
+            --transition: all 0.3s ease;
+            --text-light: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+
+        .logo {
+        position: absolute;
+        top: 1rem;
+        left: 1rem; /* Pour le coin supérieur gauche */
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .logo img {
+            height: 50px;
+            margin-right: 50px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        
+        /* Banner */
+        .banner {
+            height: 300px;
+            background: url('/api/placeholder/1200/300') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 82, 118, 0.7);
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: var(--white);
+            padding: 20px;
+        }
+
+        .banner-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .banner-content p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+            
+
+        /* About Section */
+        .about-section {
+            background-color: var(--white);
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Departments Section */
+        .departments-section {
+            background-color: var(--light-color);
+        }
+
+        .departments-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .department-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .department-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .department-image {
+            height: 160px;
+            overflow: hidden;
+        }
+
+        .department-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .department-card:hover .department-image img {
+            transform: scale(1.05);
+        }
+
+        .department-content {
+            padding: 20px;
+        }
+
+        .department-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .department-content p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .formation-list {
+            list-style: none;
+        }
+
+        .formation-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.9rem;
+        }
+
+        .formation-list li:last-child {
+            border-bottom: none;
+        }
+
+        .department-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .department-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background-color: var(--white);
+        }
+
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .stat-card {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card .stat-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .stat-card .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-card .stat-label {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background-color: var(--light-color);
+        }
+
+        .testimonial {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .testimonial-position {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            color: rgba(52, 152, 219, 0.1);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .cta-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 40px;
+        }
+
+        .footer-logo h2 {
+            font-size: 1.2rem;
+        }
+
+        .footer-about p {
+            color: #adb5bd;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #495057;
+            color: white;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary);
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 1rem;
+            color: #adb5bd;
+        }
+
+        .contact-info i {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #495057;
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+        /*test menu */
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                flex-direction: column;
+                top: 0;
+                right: -300px;
+                width: 300px;
+                height: 100vh;
+                background-color: var(--primary-color);
+                padding: 2rem;
+                transition: right 0.3s;
+                z-index: 999;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+
+            .close-menu {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+
+
+    </style>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logo\logotest-removebg-preview.png" alt="Faculty Logo">
+                
+            </div>
+            <h1>Faculté des Sciences de Bizerte</h1>
+            <button class="nav-toggle" id="navToggle">☰</button>
+            <nav>
+                <ul id="mainNav">
+                   <button class="close-menu" id="closeMenu">✕</button>
+                    <li><a href="index.html" target="_blank">Accueil </a></li>
+                    <li><a href="fsb-about.html">Presentation</a></li>
+                    <li><a href="formation/improved-faculty-page-html.html">Formation</a></li>
+                    <li><a href="page-recherche-universitaire (1).html">Recherche</a></li>
+                    <li><a href="page-contact-faculte.html">Contactez nous</a></li>
+                    <li><a href="#" id="loginBtn" class="btnC">Se connecter</a></li>
+                </ul>
+            </nav>
+           <!-- <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>  test button --> 
+        </div>
+    </header>
+    <!-- Banner -->
+    <div class="banner">
+        <div class="banner-content">
+            <h2>À propos de la Faculté des Sciences de Bizerte</h2>
+            <p>Découvrez notre histoire, notre mission et notre engagement envers l'excellence scientifique et académique</p>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container" id="s1">
+            <div class="section-title">
+                <h2>Notre Histoire</h2>
+                <p>Une tradition d'excellence et d'innovation depuis notre fondation</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Histoire et Héritage</h3>
+                    <p>Fondée en 1990 par la loi n°106 du 26 novembre, la Faculté des Sciences de Bizerte (FSB) est un établissement d'enseignement et de recherche placé sous la tutelle du Ministère de l'Enseignement Supérieur et de la Recherche Scientifique et rattaché à l'Université de Carthage. Elle a pris la relève de l'École Normale Supérieure, créée en 1956 à Tunis et transférée à Bizerte en 1980. Depuis ses débuts, la FSB a connu une croissance remarquable, devenant un pôle d'excellence académique et scientifique en Tunisie</p>
+                    
+                    <h3>Nos Domaines d'Études</h3>
+                    <p>La faculté offre une large gamme de programmes dans les domaines des mathématiques, de la physique, de la chimie, de la biologie, de l'informatique et des sciences de l'environnement. Nos cursus sont conçus pour préparer les étudiants à devenir des leaders dans leurs domaines respectifs, en combinant théorie, pratique et innovation.</p>
+                    
+                    <h3>Notre Engagement</h3>
+                    <p>Nous nous engageons à fournir une éducation de qualité supérieure qui répond aux besoins changeants de la société et du marché du travail. Notre approche pédagogique met l'accent sur la pensée critique, la résolution de problèmes et l'apprentissage expérientiel, préparant ainsi nos étudiants à exceller dans leur carrière et à contribuer au développement scientifique national et international.</p>
+                </div>
+                <div class="about-image">
+                    <img src="about\Le-vieux-port-de-bizerte2-1.jpg" alt="Faculté des Sciences de Bizerte - Campus">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Departments Section -->
+    <section class="departments-section">
+        <div class="container" id="s2">
+            <div class="section-title">
+                <h2>Nos Départements et Formations</h2>
+                <p>Découvrez la diversité des spécialités et des programmes académiques proposés par notre faculté</p>
+            </div>
+            <div class="departments-container">
+                <div class="department-card">
+                    <div class="department-image">
+                        <img src="about\math.jpg" alt="Département de Mathématiques">
+                    </div>
+                    <div class="department-content">
+                        <h3>Mathématiques</h3>
+                        <p>Formation fondamentale et appliquée en mathématiques, préparant les étudiants aux carrières académiques et professionnelles.</p>
+                        <ul class="formation-list">
+                            <li>Licence en Mathématiques Fondamentales</li>
+                            <li>Licence en Mathématiques Appliquées :Math-info</li>
+                            <li>Master de Recherche en  Mathématiques</li>
+                            <li>Master Professionnel en  Mathématiques et Data Science</li>
+                        </ul>
+                        <a href="#" class="department-link">En savoir plus →</a>
+                    </div>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-image">
+                        <img src="about\phy.jpg" alt="Département de Physique">
+                    </div>
+                    <div class="department-content">
+                        <h3>Physique</h3>
+                        <p>Exploration des lois fondamentales de l'univers avec des installations de laboratoire modernes et des enseignants experts.</p>
+                        <ul class="formation-list">
+                            <li>Génie Energétique:Froid et climatisation</li>
+                            <li>Physique : physique et énergie</li>
+                            <li>Physique des Matériaux : Matériaux composites et avancés</li>
+                            <li>Electronique Electrotechnique et Automatique : Automatique et Informatique Industrielle</li>
+                            <li>Mastères de recherche en Physique des matériaux et applications</li>
+                            <li>Mastères professionnels en Physique Génie climatique et maitrise de l'énergie</li>
+                            <li>Mastères professionnels en Physique Systèmes Intelligents Communicants</li>
+                        </ul>
+                        <a href="#" class="department-link">En savoir plus →</a>
+                    </div>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-image">
+                        <img src="about\chimie.jpg" alt="Département de Chimie">
+                    </div>
+                    <div class="department-content">
+                        <h3>Chimie</h3>
+                        <p>Formation approfondie en chimie organique, inorganique, analytique et physique avec des travaux pratiques avancés.</p>
+                        <ul class="formation-list">
+                            <li>Licence en Chimie Industruelle</li>
+                            <li>Licence en  Chimie Fine</li> 
+                            <li>Licence en   Chimie Recherche</li> 
+
+                            <li>Master de Recherche en Chimie fondamentale -Inorganique</li>
+                            <li>Master de Recherche en Chimie fondamentale -Organique-</li>
+                            <li>Master Professionnel en Chimie Industrielle et Pétrochimie</li>
+                        </ul>
+                        <a href="#" class="department-link">En savoir plus →</a>
+                    </div>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-image">
+                        <img src="about\bio.jpg" alt="Département de Biologie">
+                    </div>
+                    <div class="department-content">
+                        <h3>Biologie</h3>
+                        <p>Étude du vivant à tous les niveaux, des molécules aux écosystèmes, avec une approche théorique et pratique équilibrée.</p>
+                        <ul class="formation-list">
+                            <li>Licence en Sciences de la vie et de la terre</li>
+                            <li>Licence en Sciences du vivant et de l’environnement : Biosurveillance des écosystèmes</li>
+                            <li>Licence en Biotechnologie : Contrôle de Qualité des Aliments et Hygiène</li>
+
+                            <li>Master de Recherche Biologie des Organismes, des Populations & Environnement</li>
+                            <li>Mastère de Recherche BMC-Biotech_parcours_RFMA</li>
+
+                            <li>Mastère Professionnel en Sécurité Sanitaire des Aliments (SSA)</li>
+                        </ul>
+                        <a href="#" class="department-link">En savoir plus →</a>
+                    </div>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-image">
+                        <img src="about/info.jpg" alt="Département d'Informatique">
+                    </div>
+                    <div class="department-content">
+                        <h3>Informatique</h3>
+                        <p>Formation de pointe en informatique, couvrant la programmation, l'intelligence artificielle, et le développement de systèmes.</p>
+                        <ul class="formation-list">
+                            <li>Licence en Sciences de l’Informatique : Génie Logiciel et Système d'Information</li>
+                            <li>Licence en Ingénierie des Systèmes Informatiques : Systèmes Embarqués & IOT</li>
+                            <li>Mastère de Recherche en Sciences Informatiques</li>
+                            <li>Mastère Professionnel Expert Systèmes, Réseaux et Virtualisation</li>
+
+                            <li>Mastère Professionnel en Data Science    </li>
+                        </ul>
+                        <a href="#" class="department-link">En savoir plus →</a>
+                    </div>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-image">
+                        <img src="about\terre.jpg" alt="Département des Sciences de l'Environnement">
+                    </div>
+                    <div class="department-content">
+                        <h3>Sciences de l'Environnement</h3>
+                        <p>Étude multidisciplinaire des défis environnementaux et des solutions durables pour un avenir respectueux de la planète.</p>
+                        <ul class="formation-list">
+                            <li>Licence en  Géo-ressources et environnement</li>
+                            <li>Licence en Sciences et techniques de géologie</li>
+                            <li>Mastère de Recherche en Géologie Appliquée</li>
+                            <li>Mastère de Recherche en Hydrogéosciences et Environnement</li>
+                            <li>Mastère Professionnel en Géoressources et Applications</li>
+                            <li>Mastère Professionnel en Surveillance et Gestion Intégrée de l'Environnement</li>
+
+                        </ul>
+                        <a href="#" class="department-link">En savoir plus →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Chiffres Clés</h2>
+                <p>La Faculté des Sciences de Bizerte en quelques chiffres</p>
+            </div>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon">👨‍🎓</div>
+                    <div class="stat-number">3428+</div>
+                    <div class="stat-label">Étudiants</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👩‍🏫</div>
+                    <div class="stat-number">344</div>
+                    <div class="stat-label">Enseignants-Chercheurs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎓</div>
+                    <div class="stat-number">17</div>
+                    <div class="stat-label">Licences</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📖</div>
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Mastère</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📜</div>
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Doctorat</div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Témoignages</h2>
+                <p>Ce que disent nos professeurs et étudiants sur notre mission</p>
+            </div>
+            <div class="testimonial">
+                <div class="quote-icon">❝</div>
+                <div class="testimonial-text">
+                    "La Faculté des Sciences de Bizerte représente bien plus qu'une simple institution académique. C'est un lieu où la curiosité est encouragée, où l'excellence est célébrée, et où chaque étudiant est accompagné dans son parcours vers la réussite scientifique et professionnelle."
+                </div>
+                <div class="testimonial-author">Prof. Ahmed Ben Salem</div>
+                <div class="testimonial-position">Doyen de la Faculté</div>
+            </div>
+            <div class="testimonial">
+                <div class="quote-icon">❝</div>
+                <div class="testimonial-text">
+                    "Étudier à la FSB m'a permis de développer non seulement des compétences techniques solides, mais aussi une véritable passion pour la recherche scientifique. Les laboratoires modernes, les professeurs dévoués et l'environnement stimulant ont fait de mes années d'études une expérience transformatrice."
+                </div>
+                <div class="testimonial-author">Leila Mansouri</div>
+                <div class="testimonial-position">Ancienne étudiante, chercheuse en biologie moléculaire</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Rejoignez notre communauté scientifique</h2>
+                <p>Découvrez nos programmes d'études, nos activités de recherche et comment devenir membre de notre communauté académique dynamique et innovante.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Explorer nos formations</a>
+                    <a href="#" class="btn btn-secondary">Contacter l'administration</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section footer-about">
+                    <div class="footer-logo">
+                        <img src="logo\logotest-removebg-preview.png" alt="Faculty Logo">
+                        <h2>Faculté des Sciences</h2>
+                    </div>
+                    <p>Donner les moyens à la prochaine génération de scientifiques et d’innovateurs grâce à l’excellence en matière d’éducation et de recherche.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/FSBizerte"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/school/faculte-des-sciences-de-bizerte-universite-de-carthage/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides </h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil     </a></li>
+                        <li><a href="fsb-about.html">À propos de nous   </a></li>
+                        <li><a href="formation/improved-faculty-page-html.html">Programmes</a></li>
+                        <li><a href="page-recherche-universitaire (1).html">Recherche</a></li>
+                        <li><a href="index.html#ev">Actualités et événements     </a></li>
+                        <li><a href="page-contact-faculte.html">Contactez-nous  </a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Portail étudiant  </a></li>
+                        <li><a href="#">Portail du professeur</a></li>
+                        <li><a href="#">Administration</a></li>
+                        <li><a href="#">Bibliothèque</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contactez-nous </h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 7021 jarzouna - bizerte</p>
+                        <p><i class="fas fa-phone"></i> +216 72 590 717</p>
+                        <p><i class="fas fa-envelope"></i> fsb@fsb.rnu.tn</p>
+                        <p><i class="fas fa-clock"></i> Monday - Friday: 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Faculty of Sciences of Bizerte. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const mainNav = document.getElementById('mainNav');
+        const closeMenu = document.getElementById('closeMenu');
+
+        navToggle.addEventListener('click', () => {
+            mainNav.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mainNav.classList.remove('active');
+        });
+
+        // Login Modal
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeModal = document.getElementById('closeModal');
+        const loginTabs = document.querySelectorAll('.login-tab');
+        const loginForm = document.getElementById('loginForm');
+
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        loginTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                loginTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                // You can switch form fields or validation based on selected role
+                const role = tab.getAttribute('data-tab');
+                console.log(`Selected role: ${role}`);
+            });
+        });
+
+    </script>
+
+</body>
+</html>

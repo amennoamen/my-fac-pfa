@@ -4,46 +4,57 @@ const bcrypt = require('bcryptjs');
 const db = require('../models/db');
 
 // Login admin
+// Modifiez la route de login comme suit :
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
+    console.log('Tentative de connexion avec:', email);
 
     try {
-        // Vérifier si l'utilisateur est un admin
+        // Vérification de l'utilisateur admin
         const [users] = await db.query(`
             SELECT p.* 
             FROM personne p
-            JOIN admin a ON p.CIN = a.CIN
-            WHERE p.email = ?
-        `, [email]);
+            JOIN admin a ON p.CIN = a.CIN 
+            WHERE p.email = ?`, 
+            [email]);
 
         if (users.length === 0) {
-            return res.status(401).json({ error: 'Identifiants incorrects' });
+            console.log('Email non trouvé');
+            return res.status(401).json({ error: 'Identifiants invalides' });
         }
 
         const user = users[0];
+        console.log('Admin trouvé:', user.nom);
 
-        // Vérifier le mot de passe
+        // Vérification du mot de passe
         const isMatch = await bcrypt.compare(password, user.mdp);
         if (!isMatch) {
-            return res.status(401).json({ error: 'Identifiants incorrects' });
+            console.log('Mot de passe incorrect');
+            return res.status(401).json({ error: 'Identifiants invalides' });
         }
 
-        // Créer la session
+        // Création de la session
         req.session.user = {
             CIN: user.CIN,
             email: user.email,
             nom: user.nom,
-            prénom: user.prénom,
             isAdmin: true
         };
 
-        res.json({ message: 'Connexion réussie', user: req.session.user });
+        req.session.save((err) => {
+            if (err) {
+                console.error('Erreur sauvegarde session:', err);
+                return res.status(500).json({ error: 'Erreur serveur' });
+            }
+            console.log('Connexion réussie');
+            return res.json({ success: true });
+        });
+
     } catch (err) {
-        console.error(err);
+        console.error('Erreur serveur:', err);
         res.status(500).json({ error: 'Erreur serveur' });
     }
 });
-
 // Logout
 router.post('/logout', (req, res) => {
     req.session.destroy();

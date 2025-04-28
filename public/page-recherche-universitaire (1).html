@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recherche & Innovation - Faculté des Sciences de Bizerte</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+           --dark: #343a40; /* Dark gray */
+            --text-light: #f5f5f5;
+            --primary: #2c3e50;
+            --accent: #05bfdb;
+            --secondary: #3498db;
+            --transition: all 0.3s ease;
+
+
+
+      --primary-color: #0055a4;
+      --secondary-color: #4a90e2;
+      --accent-color: #ff6b6b;
+      --light-gray: #f8f9fa;
+      --dark-gray: #343a40;
+      --text-color: #333;
+      --white: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    
+    a {
+      text-decoration: none;
+      color: var(--primary-color);
+      transition: all 0.3s ease;
+    }
+    
+    
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    /* Header */
+    header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+
+        .logo {
+        position: absolute;
+        top: 1rem;
+        left: 1rem; /* Pour le coin supérieur gauche */
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .logo img {
+            height: 50px;
+            margin-right: 50px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+                /* Responsive Styles */
+         @media (max-width: 992px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                flex-direction: column;
+                top: 0;
+                right: -300px;
+                width: 300px;
+                height: 100vh;
+                background-color: var(--primary);
+                padding: 2rem;
+                transition: right 0.3s;
+                z-index: 999;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+
+            .close-menu {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+    
+    /* Banner */
+    .banner {
+      margin-top: 90px;
+      height: 500px;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(recherche/section1.jpg) no-repeat center center;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: var(--white);
+    }
+    
+    .banner-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .banner h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .banner p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    
+    /* Sections */
+    section {
+      padding: 80px 0;
+    }
+    
+    section:nth-child(even) {
+      background-color: var(--light-gray);
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .section-title h2 {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: var(--accent-color);
+    }
+    
+    /* Research Domains */
+    .domains-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .domain-card {
+      background-color: var(--white);
+      border-radius: 8px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .domain-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .domain-card i {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+    
+    .domain-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+    
+    /* Labs */
+    .labs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .lab-card {
+      background-color: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .lab-card:hover {
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .lab-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .lab-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    .lab-card:hover .lab-image img {
+      transform: scale(1.1);
+    }
+    
+    .lab-content {
+      padding: 20px;
+    }
+    
+    .lab-content h3 {
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-radius: 5px;
+      font-weight: 500;
+      margin-top: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+      background-color: var(--secondary-color);
+      color: var(--white);
+    }
+    
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .project-card {
+      background-color: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .project-card:hover {
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .project-image {
+      height: 180px;
+      overflow: hidden;
+    }
+    
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .project-content {
+      padding: 20px;
+    }
+    
+    .project-content h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    
+    /* Publications */
+    .publications-container {
+      background-color: var(--white);
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .search-filter {
+      display: flex;
+      margin-bottom: 30px;
+    }
+    
+    .search-filter input {
+      flex: 1;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px 0 0 5px;
+      font-size: 1rem;
+    }
+    
+    .search-filter select {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-left: none;
+      border-radius: 0 5px 5px 0;
+      background-color: var(--light-gray);
+      font-size: 1rem;
+    }
+    
+    .publication-item {
+      padding: 20px 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .publication-item:last-child {
+      border-bottom: none;
+    }
+    
+    .publication-item h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    
+    .publication-meta {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--dark-gray);
+    }
+    
+    .publication-meta div {
+      margin-right: 20px;
+    }
+    
+    .publication-meta i {
+      margin-right: 5px;
+    }
+    
+    /* Partners */
+    .partners-container {
+      text-align: center;
+    }
+    
+    .partners-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .partner-logo {
+      width: 150px;
+      height: 80px;
+      background-color: var(--light-gray);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+    }
+    
+    .partner-logo img {
+      max-width: 80%;
+      max-height: 80%;
+    }
+    
+    /* Join Research */
+    .join-research {
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/api/placeholder/1200/500') no-repeat center center;
+      background-size: cover;
+      color: var(--white);
+      text-align: center;
+    }
+    
+    .join-form {
+      max-width: 600px;
+      margin: 40px auto 0;
+      background-color: rgba(255,255,255,0.1);
+      padding: 30px;
+      border-radius: 8px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+    
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: rgba(255,255,255,0.9);
+      font-size: 1rem;
+    }
+    
+    .btn-accent {
+      background-color: var(--accent-color);
+    }
+    
+    .btn-accent:hover {
+      background-color: #ff4f4f;
+    }
+    
+    /* Footer */
+  /* Footer */
+  footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 40px;
+        }
+
+        .footer-logo h2 {
+            font-size: 1.2rem;
+        }
+
+        .footer-about p {
+            color: #adb5bd;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #495057;
+            color: white;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary);
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-info-2 p {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 1rem;
+            color: #adb5bd;
+        }
+
+        .contact-info-2 i {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #495057;
+            color: #adb5bd;
+            font-size: 0.9rem;}
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+      }
+      
+  
+      
+      .banner {
+        height: 400px;
+        margin-top: 150px;
+      }
+      
+      .banner h1 {
+        font-size: 2rem;
+      }
+      
+      section {
+        padding: 60px 0;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .banner {
+        height: 350px;
+      }
+      
+      .banner h1 {
+        font-size: 1.8rem;
+      }
+      
+      .section-title h2 {
+        font-size: 1.6rem;
+      }
+      
+      .labs-grid, .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .search-filter {
+        flex-direction: column;
+      }
+      
+      .search-filter input, .search-filter select {
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+        <div class="logo">
+            <img src="logo\logotest-removebg-preview.png" alt="Faculty Logo">
+            
+        </div>
+        <h1>Faculté des Sciences de Bizerte</h1>
+        <button class="nav-toggle" id="navToggle">☰</button>
+        <nav>
+            <ul id="mainNav">
+               <button class="close-menu" id="closeMenu">✕</button>
+                <li><a href="index.html">Accueil </a></li>
+                <li><a href="fsb-about.html">Presentation</a></li>
+                <li><a href="formation/improved-faculty-page-html.html">Formation</a></li>
+                <li><a href="#">Recherche</a></li>
+                <li><a href="page-contact-faculte.html">Contactez nous</a></li>
+                <li><a href="#" id="loginBtn" class="btn-connecter">Se connecter</a></li>
+            </ul>
+        </nav>
+       <!-- <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>  test button --> 
+    </div>
+</header>
+
+  <!-- Banner -->
+  <div class="banner">
+    <div class="container">
+      <div class="banner-content">
+        <h1>Recherche & Innovation à la Faculté des Sciences de Bizerte</h1>
+        <p>Notre faculté est à la pointe de l'innovation scientifique. Découvrez nos laboratoires, projets et publications.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Research Domains -->
+  <section id="domaines">
+    <div class="container">
+      <div class="section-title">
+        <h2>Nos Domaines de Recherche</h2>
+        <p>Explorez l'excellence scientifique à travers nos principaux axes de recherche</p>
+      </div>
+      <div class="domains-grid">
+        <div class="domain-card">
+          <i class="fa-solid fa-calculator"></i>
+          <h3>Mathématiques et Applications</h3>
+          <p>Étude et modélisation mathématique</p>
+        </div>
+        <div class="domain-card">
+          <i class="fa-solid fa-microscope"></i>
+              <h3> Immuno-Microbio Environnementale et Cancérogenèse</h3>
+          <p>Recherche sur les micro-organismes et leur rôle dans le cancer</p>
+        </div>
+        <div class="domain-card">
+          <i class="fas fa-leaf"></i>
+          <h3>Risques liés aux stress environnementaux, lutte et prévention</h3>
+          <p>Étude des impacts environnementaux sur les écosystèmes</p>
+        </div>
+        <div class="domain-card">
+          <i class="fa-solid fa-hammer"></i>          
+          <h3>Physique des Matériaux Lamellaires et Nanomatériaux Hybrides</h3>
+          <p>Étude des propriétés des matériaux innovants</p>
+        </div>
+        <div class="domain-card">
+          <i class="fa-solid fa-mountain"></i>         
+           <h3>Géologie des Ressources Naturelles</h3>
+          <p>Exploration et gestion des ressources géologiques</p>
+        </div>
+        <div class="domain-card">
+          <i class="fas fa-chart-line"></i>
+          <h3>Dynamical Systems and Their Applications</h3>
+          <p>Recherche sur la modélisation des systèmes dynamiques</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Laboratories -->
+  <section id="laboratoires">
+    <div class="container">
+      <div class="section-title">
+        <h2>Nos Laboratoires</h2>
+        <p>Des infrastructures de pointe pour une recherche innovante</p>
+      </div>
+      <div class="labs-grid">
+        <div class="lab-card">
+          <div class="lab-image">
+            <img src="recherche\ia.jpg" alt="Laboratoire d'Informatique">
+          </div>
+          <div class="lab-content">
+            <h3>Laboratoire de Recherche en Intelligence Artificielle, Ingénierie des Données et Applications</h3>
+            <p>Recherche en intelligence artificielle et analyse de données.</p>
+            <a href="#" class="btn">En savoir plus</a>
+          </div>
+        </div>
+        <div class="lab-card">
+          <div class="lab-image">
+            <img src="recherche\micro.jpg" alt="Laboratoire de Biotechnologie">
+          </div>
+          <div class="lab-content">
+            <h3>Laboratoire de Toxicologie Végétale et Microbiologie Environnementale</h3>
+            <p>Étude des toxines végétales et des impacts microbiologiques.</p>
+
+            <a href="#" class="btn">En savoir plus</a>
+          </div>
+        </div>
+        <div class="lab-card">
+          <div class="lab-image">
+            <img src="recherche\chimie.jpg" alt="Laboratoire chimie">
+          </div>
+          <div class="lab-content">
+            <h3>Application de la chimie aux ressources et substances naturelles et à l’environnemen</h3>
+            <p>Application de la chimie pour la préservation des ressources naturelles.</p>
+            <a href="#" class="btn">En savoir plus</a>
+          </div>
+        </div>
+        <div class="lab-card">
+          <div class="lab-image">
+            <img src="recherche\suivi.jpg" alt="Laboratoire d'Optique">
+          </div>
+          <div class="lab-content">
+            <h3>Biosurveillance de l’environnement</h3>
+            <p>Étude de la pollution et des bio-indicateurs environnementaux.</p>
+            <a href="#" class="btn">En savoir plus</a>
+          </div>
+        </div>
+        <div class="lab-card">
+          <div class="lab-image">
+            <img src="recherche\materiaux.jpg" alt="Laboratoire d'Optique">
+          </div>
+          <div class="lab-content">
+            <h3>Physique des matériaux</h3>
+            <p>Développement de nouveaux matériaux innovants.</p>
+            <a href="#" class="btn">En savoir plus</a>
+          </div>
+        </div>
+        <div class="lab-card">
+          <div class="lab-image">
+            <img src="recherche\structchimie.jpg" alt="Laboratoire d'Optique">
+          </div>
+          <div class="lab-content">
+            <h3>Chimie des matériaux</h3>
+            <p>Recherche sur les composés chimiques et leurs applications.</p>
+            <a href="#" class="btn">En savoir plus</a>
+          </div>
+        </div>
+        <div class="lab-card">
+          <div class="lab-image">
+            <img src="recherche\bio.jpg" alt="Laboratoire d'Optique">
+          </div>
+          <div class="lab-content">
+            <h3> Physiologie intégrée</h3>
+            <p>Étude du fonctionnement des organismes vivants.</p>
+            <a href="#" class="btn">En savoir plus</a>
+          </div>
+        </div>
+        <div class="lab-card">
+          <div class="lab-image">
+            <img src="recherche\nano.jpg" alt="Laboratoire d'Optique">
+          </div>
+          <div class="lab-content">
+            <h3>Composés Hétéro-Organiques et Matériaux Nanostructurés</h3>
+            <p>Conception de nouveaux matériaux pour des applications avancées.</p>
+            <a href="#" class="btn">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Projects -->
+  <section id="projets">
+    <div class="container">
+      <div class="section-title">
+        <h2>Projets En Cours</h2>
+        <p>Découvrez nos projets innovants et leurs impacts sur la société</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">
+            <img src="recherche\iot.jpg" alt="Projet IA ">
+          </div>
+          <div class="project-content">
+            <h3>Plateforme IoT pour l’acquisition de données</h3>
+            <p>Développement d’un banc d’essai IoT pour collecter et analyser des données multi-structurées, avec des applications en Smart City, ITS, e-Health et Smart Agriculture..</p>
+            <a href="#" class="btn">Lire plus</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="recherche\blockchain.jpg" alt="Projet d’analyse et de prédiction">
+          </div>
+          <div class="project-content">
+            <h3>Solutions d’analyse et de prédiction</h3>
+            <p>Mise en place d’une solution interopérable pour l’agrégation de données et l’intégration d’une blockchain pour assurer la traçabilité..</p>
+            <a href="#" class="btn">Lire plus</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="recherche\ia2.jpg" alt="Projet d’intelligence artificielle">
+          </div>
+          <div class="project-content">
+            <h3>Plateforme SaaS d’intelligence artificielle</h3>
+            <p>Développement d’une plateforme SaaS exploitant des algorithmes avancés d’IA, d’apprentissage automatique et de blockchain pour l’aide à la décision dans divers secteurs..</p>
+            <a href="#" class="btn">Lire plus</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publications -->
+  <section id="publications">
+    <div class="container">
+      <div class="section-title">
+        <h2>Publications & Articles Scientifiques</h2>
+        <p>Les contributions scientifiques de nos chercheurs à l'échelle internationale</p>
+      </div>
+      <div class="publications-container">
+        <div class="search-filter">
+          <input type="text" placeholder="Rechercher une publication...">
+          <select>
+            <option value="">Tous les domaines</option>
+            <option value="informatique">Sciences Informatiques</option>
+            <option value="chimie">Chimie & Biotechnologie</option>
+            <option value="environnement">Environnement</option>
+            <option value="ingenierie">Ingénierie</option>
+            <option value="mathematiques">Mathématiques</option>
+          </select>
+        </div>
+        <div class="publications-list">
+          <div class="publication-item" data-domain="informatique">
+            <h3>Deep Learning Approaches for Medical Image Segmentation: Recent Advances and Future Challenges</h3>
+            <div class="publication-meta">
+              <div class="authors"><i class="fas fa-user"></i> Ahmed M., Benali S., Martineau P.</div>
+              <div class="year"><i class="fas fa-calendar"></i> 2023</div>
+              <div class="journal"><i class="fas fa-book"></i> IEEE Transactions on Medical Imaging</div>
+            </div>
+            <a href="#" class="btn">Télécharger PDF</a>
+          </div>
+          <div class="publication-item" data-domain="chimie">
+            <h3>Novel Approach for Sustainable Desalination Using Nanostructured Membranes</h3>
+            <div class="publication-meta">
+              <div class="authors"><i class="fas fa-user"></i> Trabelsi H., Mejri F., Dupont J.</div>
+              <div class="year"><i class="fas fa-calendar"></i> 2023</div>
+              <div class="journal"><i class="fas fa-book"></i> Journal of Membrane Science</div>
+            </div>
+            <a href="#" class="btn">Télécharger PDF</a>
+          </div>
+          <div class="publication-item" data-domain="environnement">
+            <h3>Marine Bacterial Diversity in the Mediterranean Basin: A Comprehensive Study</h3>
+            <div class="publication-meta">
+              <div class="authors"><i class="fas fa-user"></i> Kammoun L., Garcia M., Al-Hassan K.</div>
+              <div class="year"><i class="fas fa-calendar"></i> 2022</div>
+              <div class="journal"><i class="fas fa-book"></i> Marine Biology Research</div>
+            </div>
+            <a href="#" class="btn">Télécharger PDF</a>
+          </div>
+          <div class="publication-item" data-domain="mathematiques">
+            <h3>Mathematical Modeling of Climate Change Impact on Mediterranean Coastal Ecosystems</h3>
+            <div class="publication-meta">
+              <div class="authors"><i class="fas fa-user"></i> Ben Salem R., Rodriguez C., Müller T.</div>
+              <div class="year"><i class="fas fa-calendar"></i> 2022</div>
+              <div class="journal"><i class="fas fa-book"></i> Ecological Modelling</div>
+            </div>
+            <a href="#" class="btn">Télécharger PDF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section id="partenaires">
+    <div class="container">
+      <div class="section-title">
+        <h2>Partenariats & Collaborations</h2>
+        <p>Notre réseau d'excellence académique et scientifique international</p>
+      </div>
+      <div class="partners-container">
+        <p>La Faculté des Sciences de Bizerte entretient des collaborations scientifiques avec des institutions prestigieuses à travers le monde. Ces partenariats permettent des échanges d'étudiants, des projets de recherche communs et l'organisation de conférences internationales.</p>
+        <div class="partners-logos">
+          <div class="partner-logo">
+            <img src="/api/placeholder/120/60" alt="Université Partenaire 1">
+          </div>
+          <div class="partner-logo">
+            <img src="/api/placeholder/120/60" alt="Université Partenaire 2">
+          </div>
+          <div class="partner-logo">
+            <img src="/api/placeholder/120/60" alt="Université Partenaire 3">
+          </div>
+          <div class="partner-logo">
+            <img src="/api/placeholder/120/60" alt="Université Partenaire 4">
+          </div>
+          <div class="partner-logo">
+            <img src="/api/placeholder/120/60" alt="Université Partenaire 5">
+          </div>
+          <div class="partner-logo">
+            <img src="/api/placeholder/120/60" alt="Université Partenaire 6">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join Research -->
+  <section id="rejoindre" class="join-research">
+    <div class="container">
+      <div class="section-title">
+        <h2>Rejoindre un Projet de Recherche</h2>
+        <p>Participez à l'aventure scientifique et contribuez à façonner l'avenir</p>
+      </div>
+      <div class="join-form">
+        <form>
+          <div class="form-group">
+            <label for="name">Nom complet</label>
+            <input type="text" id="name" placeholder="Votre nom et prénom">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Votre adresse email">
+          </div>
+          <div class="form-group">
+            <label for="domain">Domaine d'intérêt</label>
+            <select id="domain">
+              <option value="">Sélectionnez un domaine</option>
+              <option value="informatique">Sciences Informatiques</option>
+              <option value="chimie">Chimie & Biotechnologie</option>
+              <option value="environnement">Environnement & Développement Durable</option>
+              <option value="ingenierie">Ingénierie & Technologie</option>
+              <option value="mathematiques">Mathématiques & Modélisation</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-accent">Postuler pour un projet</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+ <!-- Pied de page -->
+ <footer>
+  <div class="container">
+      <div class="footer-container">
+          <div class="footer-section footer-about">
+              <div class="footer-logo">
+                  <img src="logo\logotest-removebg-preview.png" alt="Faculty Logo">
+                  <h2>Faculté des Sciences                        </h2>
+              </div>
+              <p>Donner les moyens à la prochaine génération de scientifiques et d’innovateurs grâce à l’excellence en matière d’éducation et de recherche.
+              </p>
+              <div class="social-icons">
+                  <a href="https://www.facebook.com/FSBizerte"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#"><i class="fab fa-twitter"></i></a>
+                  <a href="https://www.linkedin.com/school/faculte-des-sciences-de-bizerte-universite-de-carthage/"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+              </div>
+          </div>
+          <div class="footer-section">
+              <h3>Liens rapides </h3>
+              <ul class="footer-links">
+                  <li><a href="index.html">Accueil     </a></li>
+                  <li><a href="fsb-about.html#s1">À propos de nous   </a></li>
+                  <li><a href="formation/improved-faculty-page-html.html">Programmes</a></li>
+                  <li><a href="#">Recherche</a></li>
+                  <li><a href="index.html#ev">Actualités et événements     </a></li>
+                  <li><a href="page-contact-faculte.html">Contactez-nous  </a></li>
+              </ul>
+          </div>
+          <div class="footer-section">
+              <h3>Liens utiles</h3>
+              <ul class="footer-links">
+                  <li><a href="#">Portail étudiant  </a></li>
+                  <li><a href="#">Portail du professeur</a></li>
+                  <li><a href="#">Administration</a></li>
+                  <li><a href="#">Bibliothèque</a></li>
+              
+              </ul>
+          </div>
+          <div class="footer-section">
+              <h3>Contactez-nous                </h3>
+              <div class="contact-info-2">
+                  <p><i class="fas fa-map-marker-alt"></i> 7021 jarzouna - bizerte</p>
+                  <p><i class="fas fa-phone"></i> +216 72 590 717</p>
+                  <p><i class="fas fa-envelope"></i> fsb@fsb.rnu.tn</p>
+                  <p><i class="fas fa-clock"></i> Monday - Friday: 8:00 AM - 5:00 PM</p>
+              </div>
+          </div>
+      </div>
+      <div class="footer-bottom">
+          <p>&copy; 2025 Faculty of Sciences of Bizerte. All Rights Reserved.</p>
+      </div>
+  </div>
+</footer>
+
+  <script>
+  // Navigation Toggle
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+  const closeMenu = document.getElementById('closeMenu');
+
+  navToggle.addEventListener('click', () => {
+      mainNav.classList.add('active');
+  });
+
+  closeMenu.addEventListener('click', () => {
+      mainNav.classList.remove('active');
+  });
+
+  <!-- JavaScript pour le filtrage des publications -->
+ 
+    document.addEventListener('DOMContentLoaded', function () {
+      const searchInput = document.querySelector('.search-filter input');
+      const domainSelect = document.querySelector('.search-filter select');
+      const publicationItems = document.querySelectorAll('.publication-item');
+
+      // Fonction pour filtrer les publications
+      function filterPublications() {
+        const searchText = searchInput.value.toLowerCase();
+        const selectedDomain = domainSelect.value.toLowerCase();
+
+        publicationItems.forEach(item => {
+          const title = item.querySelector('h3').textContent.toLowerCase();
+          const domain = item.getAttribute('data-domain') || '';
+
+          const matchesSearch = title.includes(searchText);
+          const matchesDomain = selectedDomain === '' || domain === selectedDomain;
+
+          if (matchesSearch && matchesDomain) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      }
+
+      // Écouteurs d'événements pour la recherche et le filtrage
+      searchInput.addEventListener('input', filterPublications);
+      domainSelect.addEventListener('change', filterPublications);
+    });
+  </script>
+</body>
+</html>

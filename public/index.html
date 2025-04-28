@@ -1,279 +1,1383 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Faculté des Sciences de Bizerte</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Faculty of Sciences of Bizerte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50; /* Dark blue */
+            --secondary: #3498db; /* Bright blue */
+            --accent: #05bfdb; /* Red */
+            --light: #f8f9fa; /* Light gray */
+            --dark: #343a40; /* Dark gray */
+            --success: #28a745; /* Green */
+            --warning: #ffc107; /* Yellow */
+            --danger: #dc3545; /* Red */
+            --gray: #6c757d; /* Gray */
+            --light-gray: #e9ecef; /* Light gray */
+            --transition: all 0.3s ease;
+            --text-light: #f5f5f5;
 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+
+        .logo {
+        position: absolute;
+        top: 1rem;
+        left: 1rem; /* Pour le coin supérieur gauche */
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .logo img {
+            height: 50px;
+            margin-right: 50px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+
+
+        /* Hero Section */
+        .hero-content {
+            background: rgba(0, 0, 0, 0.5); /* Noir semi-transparent */
+                    padding: 2rem;
+                 border-radius: 10px;
+                }
+                .hero h2 {
+                                   font-family: 'Poppins', sans-serif;
+                         font-size: 3rem;
+                         font-weight: 700;
+                     margin-bottom: 1rem;
+                }
+
+.hero p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+.hero h2 {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h2 {
+    animation: fadeInUp 1.5s ease-in-out;
+}
+
+.hero p {
+    animation: fadeInUp 2s ease-in-out;
+}
+.hero .btn {
+
+  transform: translate(-50%, -50%);
+  color: #fff;
+  background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
+  background-position: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: "Poppins", sans-serif;
+}
+@-moz-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-webkit-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-o-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+
+.hero .btn:hover {
+    background-color: #2980b9; /* Bleu plus foncé au survol */
+    transform: translateY(-5px); /* Effet de levée */
+}
+.hero-content {
+    transform: translateY(-20px);
+    transition: transform 0.5s ease-out;
+}
+
+.hero:hover .hero-content {
+    transform: translateY(0);
+}
+/*hetha eli 9blou test*/
+
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 2s ease-in-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeIn 2.5s ease-in-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero .btn {
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary);
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* News & Events */
+        .news-events {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .news-events {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .news-container, .events-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .view-all {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .view-all:hover {
+            text-decoration: underline;
+        }
+
+        .news-card {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .news-card:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .news-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .news-excerpt {
+            color: var(--gray);
+            margin-bottom: 0.75rem;
+        }
+
+        .read-more {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        .event-item {
+            display: flex;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .event-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .event-date {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem;
+            text-align: center;
+            min-width: 70px;
+            border-radius: 4px;
+            margin-right: 1rem;
+        }
+
+        .event-date-day {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .event-date-month {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .event-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .event-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Quick Access Section */
+        .quick-access {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .quick-access {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .access-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .access-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .access-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .access-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .access-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        /* About Faculty Section */
+        .about-faculty {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .about-faculty {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* About Statistics Section */
+        .about-statistics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-statistics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-statistics {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .stat-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .stat-card .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .stat-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Partners Section */
+        .partners {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .partners img {
+            max-width: 150px;
+            height: auto;
+           /* filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+
+        .partners img:hover {
+            filter: grayscale(0%);
+        }*/
+        }
+
+        /* Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* FAQ Section */
+        .faq {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 1rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '▼';
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-answer p {
+            padding: 1rem 0;
+            color: var(--gray);
+        }
+
+        /* Call to Action Section */
+        .cta {
+            background-color: var(--primary);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta .btn {
+            margin: 0 0.5rem;
+        }
+
+        .btn-secondary {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #c0392b;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 40px;
+        }
+
+        .footer-logo h2 {
+            font-size: 1.2rem;
+        }
+
+        .footer-about p {
+            color: #adb5bd;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #495057;
+            color: white;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary);
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 1rem;
+            color: #adb5bd;
+        }
+
+        .contact-info i {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #495057;
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                flex-direction: column;
+                top: 0;
+                right: -300px;
+                width: 300px;
+                height: 100vh;
+                background-color: var(--primary);
+                padding: 2rem;
+                transition: right 0.3s;
+                z-index: 999;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+
+            .close-menu {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <!-- Add Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Main Header -->
-    <header class="main-header">
-        <div class="logo-container">
-            <img src="https://via.placeholder.com/50x50" alt="Logo FSB" class="logo-img">
-            <h1 class="header-title">Faculté des Sciences de Bizerte</h1>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logo\logotest-removebg-preview.png" alt="Faculty Logo">
+                
+            </div>
+            <h1>Faculté des Sciences de Bizerte</h1>
+            <button class="nav-toggle" id="navToggle">☰</button>
+            <nav>
+                <ul id="mainNav">
+                   <button class="close-menu" id="closeMenu">✕</button>
+                    <li><a href="#">Accueil </a></li>
+                    <li><a href="fsb-about.html">Presentation</a></li>
+                    <li><a href="formation/improved-faculty-page-html.html">Formation</a></li>
+                    <li><a href="page-recherche-universitaire (1).html">Recherche</a></li>
+                    <li><a href="page-contact-faculte.html">Contactez nous</a></li>
+                    <li><a href="#" id="loginBtn" class="btn btn-primary">Se connecter</a></li>
+                </ul>
+            </nav>
+           <!-- <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>  test button --> 
         </div>
-        
-        <button class="nav-toggle" id="navToggle">
-            <i class="fas fa-bars"></i>
-        </button>
-        
-        <nav class="main-nav" id="mainNav">
-            <a href="index.html" class="nav-link">
-                <i class="fas fa-home"></i>
-                Accueil
-            </a>
-            <a href="fsb-about.html" class="nav-link">
-                <i class="fas fa-info-circle"></i>
-                Présentation
-            </a>
-            <a href="#" class="nav-link">
-                <i class="fas fa-graduation-cap"></i>
-                Formation
-            </a>
-            <a href="#" class="nav-link">
-                <i class="fas fa-flask"></i>
-                Recherche
-            </a>
-            <a href="page-contact-faculte.html" class="nav-link">
-                <i class="fas fa-envelope"></i>
-                Contact
-            </a>
-            <a href="#" class="nav-link btn-logout" id="logoutBtn">
-                <i class="fas fa-sign-out-alt"></i>
-                Déconnexion
-            </a>
-        </nav>
     </header>
 
-    <!-- Admin Container -->
-    <div class="admin-container">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="admin-profile">
-                <div class="admin-avatar">
-                    <i class="fas fa-user-shield"></i>
-                </div>
-                <h3 class="admin-name">Admin FSB</h3>
-                <span class="admin-role">Administrateur</span>
-            </div>
-            
-            <nav class="nav-menu">
-                <button id="studentsTab" class="nav-btn active">
-                    <i class="fas fa-users"></i>
-                    <span>Gestion Étudiants</span>
-                </button>
-                <button id="gradesTab" class="nav-btn">
-                    <i class="fas fa-clipboard-list"></i>
-                    <span>Gestion Notes</span>
-                </button>
-                <button class="nav-btn">
-                    <i class="fas fa-chart-bar"></i>
-                    <span>Statistiques</span>
-                </button>
-                <button class="nav-btn">
-                    <i class="fas fa-cog"></i>
-                    <span>Paramètres</span>
-                </button>
-            </nav>
-        </aside>
+    <!-- Hero Section -->
+    <!-- <section class="hero"><div class="container"><h2>Welcome to Faculty of Sciences of Bizerte</h2><p>Empowering the next generation of scientists and innovators through excellence in education and research.</p> <a href="#" class="btn btn-primary">Explore Programs</a></div> </section> -->
+    
+    <!-- Hero Section with Video Background -->
+<section class="hero">
+    <div class="video-background">
+        <video autoplay muted loop id="heroVideo">
+            <source src="vd.mp4" type="video/mp4">
+            <!-- Fallback pour les navigateurs qui ne supportent pas la vidéo -->
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="hero-content">
+        <h2>Bienvenue à la Faculté des Sciences de Bizerte</h2>
+        <p>Donner les moyens à la prochaine génération de scientifiques et d’innovateurs grâce à l’excellence en matière d’éducation et de recherche.</p>
+        <a href="#" class="btn btn-primary">Explorer les programmes</a>
+    </div>
+</section>
 
-        <!-- Main Content -->
-        <main class="content">
-            <div class="content-header">
-                <h2 class="page-title" id="pageTitle">Gestion des Étudiants</h2>
-                <div class="header-actions">
-                    <button id="addStudentBtn" class="btn-primary">
-                        <i class="fas fa-user-plus"></i>
-                        <span>Nouvel Étudiant</span>
-                    </button>
-                    <button id="addGradeBtn" class="btn-primary" style="display: none;">
-                        <i class="fas fa-plus-circle"></i>
-                        <span>Nouvelle Note</span>
-                    </button>
-                </div>
-            </div>
+<style>
+    .hero {
+        position: relative;
+        height: 100vh; /* Ajuste la hauteur de la section */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        overflow: hidden;
+    }
 
-            <!-- Students Section -->
-            <section id="studentsSection" class="active-section">
-                <div class="card">
-                    <div class="table-container">
-                        <table id="studentsTable">
-                            <thead>
-                                <tr>
-                                    <th>CIN</th>
-                                    <th>Nom</th>
-                                    <th>Prénom</th>
-                                    <th>Email</th>
-                                    <th>Inscription</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Rempli dynamiquement -->
-                            </tbody>
-                        </table>
+    .video-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Place la vidéo en arrière-plan */
+    }
+
+    .video-background video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Assure que la vidéo couvre tout l'espace */
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1; /* Place le contenu au-dessus de la vidéo */
+    }
+
+    .hero h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 2rem;
+        animation: fadeIn 2.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- About Faculty Section -->
+            <section>
+                <h2 class="section-title">À propos de notre faculté</h2>
+                <div class="about-faculty">
+                    <div class="about-content">
+                        <h3>Excellence en enseignement scientifique  </h3>
+                        <p>La Faculté des Sciences de Bizerte (FSB) est un établissement d'enseignement supérieur et de recherche placé sous la tutelle du Ministère de l'Enseignement Supérieur et de la Recherche Scientifique. Elle est affiliée à l'Université de Carthage et joue un rôle clé dans la formation et le développement scientifique en Tunisie.</p>
+                        <p>Fondée en 1990 par la loi n°106 du 26 novembre 1990, la faculté est l'héritière de l'École Normale Supérieure, créée en 1956 à Tunis et transférée à Bizerte en octobre 1980. Depuis sa création, la FSB s'engage à offrir une formation de qualité dans divers domaines scientifiques et à promouvoir la recherche à travers ses laboratoires et centres spécialisés.</p>
+                        <p>Grâce à des infrastructures modernes et un corps professoral hautement qualifié, la Faculté des Sciences de Bizerte constitue un pôle d’excellence académique, favorisant l’innovation et la collaboration scientifique, aussi bien au niveau national qu’international.
+                        </p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                    <div class="about-image">
+                        <img src="logo\fsb.jpg" alt="Faculty Building">
                     </div>
                 </div>
             </section>
 
-            <!-- Grades Section -->
-            <section id="gradesSection">
-                <div class="card">
-                    <div class="table-container">
-                        <table id="gradesTable">
-                            <thead>
-                                <tr>
-                                    <th>CIN Étudiant</th>
-                                    <th>Matière</th>
-                                    <th>Note</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Rempli dynamiquement -->
-                            </tbody>
-                        </table>
+            <!-- About Statistics Section -->
+            <section>
+               <!-- <h2 class="section-title">À propos de notre faculté</h2>-->
+                <div class="about-statistics">
+                    <div class="stat-card">
+                        <i>👨‍🎓</i>
+                        <h3>Étudiants</h3>
+                        <p class="stat-number">3428+</p>
+                        <p class="stat-description">Étudiants inscrits dans divers programmes.</p>
+                    </div>
+                    <div class="stat-card">
+                        <i>👨‍🏫</i>
+                        <h3>Professeurs</h3>
+                        <p class="stat-number">344+</p>
+                        <p class="stat-description">Professeurs et chercheurs hautement qualifiés.</p>
+                    </div>
+                    <div class="stat-card">
+                        <i>📚</i>
+                        <h3>Cours</h3>
+                        <p class="stat-number">150+</p>
+                        <p class="stat-description">Offert des cours dans divers domaines scientifiques.                        </p>
+                    </div>
+                    <div class="stat-card">
+                        <i>🔬</i>
+                        <h3>laboratoires</h3>
+                        <p class="stat-number">20+</p>
+                        <p class="stat-description">Laboratoires et centres de recherche avancés.</p>
                     </div>
                 </div>
             </section>
-        </main>
-    </div>
 
-    <!-- Student Modal -->
-    <div id="studentModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="studentModalTitle">Ajouter un Étudiant</h3>
-                <span class="close">&times;</span>
-            </div>
-            <form id="studentForm" class="modal-form">
-                <input type="hidden" id="studentId">
-                <div class="form-group">
-                    <label for="cin">CIN</label>
-                    <input type="text" id="cin" required placeholder="Ex: 12345678">
+            <!-- News & Events Section -->
+            <section id="ev">
+                <h2 class="section-title">Actualités et événements</h2>
+                <div class="news-events">
+                    <!-- News Section -->
+                    <div class="news-container">
+                        <div class="section-header">
+                            <h3>Dernières nouvelles</h3>
+                            <a href="#" class="view-all">Afficher tout</a>
+                        </div>
+                        <!-- News Items -->
+                        <div class="news-card">
+                            <div class="news-date">March 1, 2025</div>
+                            <h4 class="news-title">Faculty Receives Grant for Advanced Research Laboratory</h4>
+                            <p class="news-excerpt">The Faculty of Sciences has been awarded a substantial grant to establish a new cutting-edge research laboratory that will enhance our capabilities in biochemistry and molecular biology.</p>
+                            <a href="#" class="read-more">En savoir plus</a>
+                        </div>
+                        <div class="news-card">
+                            <div class="news-date">February 25, 2025</div>
+                            <h4 class="news-title">Computer Science Department Hosts International Conference</h4>
+                            <p class="news-excerpt">The Computer Science Department is proud to host the International Conference on Artificial Intelligence and Data Science, bringing together experts from around the world.</p>
+                            <a href="#" class="read-more">En savoir plus</a>
+                        </div>
+                        <div class="news-card">
+                            <div class="news-date">February 18, 2025</div>
+                            <h4 class="news-title">Student Research Team Wins National Competition</h4>
+                            <p class="news-excerpt">A team of undergraduate students from our Physics Department has won first place in the National Science Competition with their innovative project on renewable energy.</p>
+                            <a href="#" class="read-more">En savoir plus</a>
+                        </div>
+                    </div>
+
+                    <!-- Events Section -->
+                    <div class="events-container">
+                        <div class="section-header">
+                            <h3>Événements à venir</h3>
+                            <a href="#" class="view-all">Afficher tout</a>
+                        </div>
+                        <!-- Event Items -->
+                        <div class="event-item">
+                            <div class="event-date">
+                                <div class="event-date-day">15</div>
+                                <div class="event-date-month">Mar</div>
+                            </div>
+                            <div class="event-info">
+                                <h4>Guest Lecture: Quantum Computing</h4>
+                                <p>10:00 AM | Auditorium A</p>
+                            </div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">
+                                <div class="event-date-day">22</div>
+                                <div class="event-date-month">Mar</div>
+                            </div>
+                            <div class="event-info">
+                                <h4>Annual Science Fair</h4>
+                                <p>9:00 AM - 5:00 PM | Main Campus</p>
+                            </div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">
+                                <div class="event-date-day">28</div>
+                                <div class="event-date-month">Mar</div>
+                            </div>
+                            <div class="event-info">
+                                <h4>Workshop: Scientific Research Methods</h4>
+                                <p>2:00 PM | Room B204</p>
+                            </div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">
+                                <div class="event-date-day">05</div>
+                                <div class="event-date-month">Apr</div>
+                            </div>
+                            <div class="event-info">
+                                <h4>Career Day: Meet Industry Professionals</h4>
+                                <p>11:00 AM | Faculty Hall</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="lastName">Nom</label>
-                    <input type="text" id="lastName" required placeholder="Ex: DUPONT">
+            </section>
+
+            <!-- Quick Access Section -->
+            <section>
+                <h2 class="section-title">Accès rapide</h2>
+                <div class="quick-access">
+                    <div class="access-card">
+                        <i>👨‍🎓</i>
+                        <h3>Espace étudiant</h3>
+                        <p>Accédez à vos notes, horaires, supports de cours et communiquez avec vos professeurs.</p>
+                        <a href="#" class="btn btn-primary">Portail Étudiant</a>
+                    </div>
+                    <div class="access-card">
+                        <i>👨‍🏫</i>
+                        <h3>Espace Professeur  </h3>
+                        <p>Manage your courses, publish grades, and communicate with students.</p>
+                        <a href="#" class="btn btn-primary">Portail Enseignant</a>
+                    </div>
+                    <div class="access-card">
+                        <i>🏢</i>
+                        <h3>Administration</h3>
+                        <p>Gérez les utilisateurs, le contenu et gérez les tâches administratives.</p>
+                        <a href="#" class="btn btn-primary">Portail Universitaire</a>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="firstName">Prénom</label>
-                    <input type="text" id="firstName" required placeholder="Ex: Jean">
+            </section>
+
+            
+            
+
+            
+
+            <!-- Gallery Section -->
+            <section>
+                <h2 class="section-title">Clubs</h2>
+                <div class="gallery">
+                    <img src="club\c1.png" alt="Gallery Image 1">
+                    <img src="club\c2.jpg" alt="Gallery Image 2">
+                    <img src="club\c3.jpg" alt="Gallery Image 3">
+                    <img src="club\c4.jpg" alt="Gallery Image 4">
+                    <img src="club\c5.jpg" alt="Gallery Image 5">
+                    <img src="club\c6.jpg" alt="Gallery Image 6">
                 </div>
-                <div class="form-group">
-                    <label for="birthDate">Date de naissance</label>
-                    <input type="date" id="birthDate" required >
+            </section>
+            <!-- Testimonials Section -->
+            <section>
+                <h2 class="section-title">Histoires de Réussite</h2>
+                <div class="testimonials">
+                    <div class="testimonial-card">
+                        <img src="logo\WhatsApp Image 2024-09-04 à 23.10.02_53b33c41-fotor-bg-remover-20241203205946.png" alt="Student 1" class="testimonial-img">
+                        <p class="testimonial-text">"La Faculté des Sciences de Bizerte m'a donné les outils et les connaissances pour exceller dans mon domaine. Les professeurs sont très encourageants "</p>
+                        <p class="testimonial-author">-Noamen Amen Allah,Diplômé en Informatique </p>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="logo\einstein.jpg" alt="Student 2" class="testimonial-img">
+                        <p class="testimonial-text">"je suis reconnaissant des opportunités de recherche qui m'ont été offertes pendant mes études à la faculté. Elles ont façonné ma carrière et m'ont ouvert de nombreuses portes."</p>
+                        <p class="testimonial-author">- albert einstein, Diplômé en mathématiques   </p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" required placeholder="Ex: jean.dupont@email.com">
+            </section>
+             
+                <!-- Partners Section -->
+            <section>
+                <h2 class="section-title">Nos partenaires</h2>
+                <div class="partners">
+                    <img src="partenaire\p1.png" alt="Partner 1">
+                    <img src="partenaire\p2.png" alt="Partner 2">
+                    <img src="partenaire\p3.png" alt="Partner 3">
+                    <img src="partenaire\p4.png" alt="Partner 4">
                 </div>
-                <div class="form-group">
-                    <label for="registrationNumber">N° Inscription</label>
-                    <input type="text" id="registrationNumber" required placeholder="Ex: 20230001">
+            </section>
+             <!-- Call to Action Section -->
+             <section class="cta">
+                <div class="container">
+                    <h2>Prêt à nous rejoindre ?</h2>
+                    <p>Take the first step towards a successful career in science. Apply now or contact us for more information.</p>
+                    <a href="#" class="btn btn-primary">Apply Now</a>
+                    <a href="#" class="btn btn-secondary">Contact Us</a>
                 </div>
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <input type="text" id="address" required placeholder="Ex: Bizerte/corniche/7000">
+                </section>
+
+            <!-- FAQ Section -->
+            <section>
+                <h2 class="section-title">Questions fréquemment posées</h2>
+                <div class="faq">
+                    <div class="faq-item">
+                        <button class="faq-question">Quels programmes la faculté offre-t-elle?</button>
+                        <div class="faq-answer">
+                            <p>La Faculté des Sciences de Bizerte offre une large gamme de programmes en Biologie, Chimie, Informatique, Géologie, Mathématiques et Physique.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Quels documents sont requis pour l'inscription ?</button>
+                        <div class="faq-answer">
+                            <p>Les documents demandés incluent généralement :
+
+                                Une copie du diplôme de fin d’études secondaires
+                                Une pièce d’identité
+                                Une photo d’identité
+                                Le relevé de notes
+                                </p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Comment me connecter à mon espace étudiant ?</button>
+                        <div class="faq-answer">
+                            <p>Allez sur la page de connexion, entrez votre identifiant et votre mot de passe. En cas de problème, utilisez l’option "Mot de passe oublié" ou contactez le support technique.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="password">Mot de passe </label>
-                    <input type="password" id="password" required placeholder="Ex:">
-                </div>
-                
-                <div class="form-group">
-                    <label for="entryYear">annéeEntrée </label>
-                    <input type="text" id="entryYear" required placeholder="Ex: 2024/2025">
-                </div>
-                <div class="form-group">
-                <button type="submit" class="btn-submit">
-                    <i class="fas fa-save"></i>
-                    Enregistrer
-                </button>
-            </div>
-            </form>
+            </section>
+
+          
         </div>
-    </div>
+    </main>
 
-    <!-- Grade Modal -->
-    <div id="gradeModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="gradeModalTitle">Ajouter une Note</h3>
-                <span class="close">&times;</span>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section footer-about">
+                    <div class="footer-logo">
+                        <img src="logo\logotest-removebg-preview.png" alt="Faculty Logo">
+                        <h2>Faculté des Sciences                        </h2>
+                    </div>
+                    <p>Donner les moyens à la prochaine génération de scientifiques et d’innovateurs grâce à l’excellence en matière d’éducation et de recherche.
+                    </p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/FSBizerte"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/school/faculte-des-sciences-de-bizerte-universite-de-carthage/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides </h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Accueil     </a></li>
+                        <li><a href="fsb-about.html#s1">À propos de nous   </a></li>
+                        <li><a href="formation/improved-faculty-page-html.html">Programmes</a></li>
+                        <li><a href="page-recherche-universitaire (1).html">Recherche</a></li>
+                        <li><a href="#ev">Actualités et événements     </a></li>
+                        <li><a href="page-contact-faculte.html">Contactez-nous  </a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Portail étudiant  </a></li>
+                        <li><a href="#">Portail du professeur</a></li>
+                        <li><a href="#">Administration</a></li>
+                        <li><a href="#">Bibliothèque</a></li>
+                    
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contactez-nous                </h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 7021 jarzouna - bizerte</p>
+                        <p><i class="fas fa-phone"></i> +216 72 590 717</p>
+                        <p><i class="fas fa-envelope"></i> fsb@fsb.rnu.tn</p>
+                        <p><i class="fas fa-clock"></i> Monday - Friday: 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
             </div>
-            <form id="gradeForm" class="modal-form">
-                <input type="hidden" id="gradeId">
-                <div class="form-group">
-                    <label for="studentCin">Étudiant</label>
-                    <select id="studentCin" required>
-                        <option value="">Sélectionner un étudiant</option>
-                        <!-- Rempli dynamiquement -->
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="subjectId">Matière</label>
-                    <input type="text" id="subjectId" required placeholder="Ex: MATH101">
-                </div>
-                <div class="form-group">
-                    <label for="grade">Note (0-20)</label>
-                    <input type="number" id="grade" min="0" max="20" step="0.1" required placeholder="Ex: 15.5">
-                </div>
-                <button type="submit" class="btn-submit">
-                    <i class="fas fa-save"></i>
-                    Enregistrer
-                </button>
-            </form>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Faculty of Sciences of Bizerte. All Rights Reserved.</p>
+            </div>
         </div>
-    </div>
+    </footer>
 
-    <!--  Edit Students -->
-    <div id="editModal" class="modal2">
-        <div class="modal-content2">
-          <span class="close" onclick="document.getElementById('editModal').style.display='none'">&times;</span>
-          <h2>Modifier Étudiant</h2>
-          <form id="editStudentForm">
-            <input type="hidden" id="editCin">
-            
-            <div class="form-group">
-              <label>Nom</label>
-              <input type="text" id="editNom" required>
-            </div>
-            
-            <div class="form-group">
-              <label>Prénom</label>
-              <input type="text" id="editPrenom" required>
-            </div>
-            
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" id="editEmail" required>
-            </div>
-            
-            <div class="form-group">
-              <label>Numéro Inscription</label>
-              <input type="text" id="editNumInscri" required>
-            </div>
-            
-            <div class="form-group">
-              <label>Année Entrée</label>
-              <input type="text" id="editAnneeEntree" required>
-            </div>
-            
-            <button type="submit" class="btn-submit">Enregistrer</button>
-          </form>
-        </div>
-      </div>
+    <!-- Login Modal -->
+    
 
+    <script>
+        // Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const mainNav = document.getElementById('mainNav');
+        const closeMenu = document.getElementById('closeMenu');
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">Opération réussie</span>
-    </div>
-    <script src="js/app.js"></script>
+        navToggle.addEventListener('click', () => {
+            mainNav.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mainNav.classList.remove('active');
+        });
+
+        // Login Modal
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeModal = document.getElementById('closeModal');
+        const loginTabs = document.querySelectorAll('.login-tab');
+        const loginForm = document.getElementById('loginForm');
+
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        loginTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                loginTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                // You can switch form fields or validation based on selected role
+                const role = tab.getAttribute('data-tab');
+                console.log(`Selected role: ${role}`);
+            });
+        });
+
+        // FAQ Toggle
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                question.classList.toggle('active');
+                if (answer.style.maxHeight) {
+                    answer.style.maxHeight = null;
+                } else {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
