@@ -105,41 +105,59 @@ async function saveStudent(studentData) {
       showToast(error.message, 'error');
     }
   }
-// Gestion des notes
-async function loadGrades() {
+// Gestion des Teachers
+async function loadTeachers() {
     try {
-        const data = await fetchData('/admin/grades');
-        renderGradesTable(data);
+        const data = await fetchData('/admin/teachers');
+        renderTeachersTable(data);
     } catch (error) {
         console.error('Erreur:', error);
-        showToast('Erreur lors du chargement des notes', 'error');
+        showToast('Erreur lors du chargement des enseignants', 'error');
     }
 }
-
-async function saveGrade(gradeData, isEdit = false) {
+async function saveTeacher(teacherData) {
     try {
-        const url = `/admin/grades${isEdit ? `/${gradeData.id}` : ''}`;
-        const method = isEdit ? 'PUT' : 'POST';
+        const response = await fetch('http://localhost:3000/admin/teachers', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(teacherData),
+            credentials: 'include'
+        });
+
+        const result = await response.json();
         
-        await fetchData(url, method, gradeData);
-        showToast(isEdit ? 'Note mise à jour' : 'Note ajoutée');
-        loadGrades();
-        return true;
+        if (response.ok) {
+            showToast(result.message || 'Enseignant ajouté avec succès', 'success');
+            return true;
+        } else {
+            throw new Error(result.error || 'Erreur lors de l\'ajout');
+        }
     } catch (error) {
-        console.error('Erreur:', error);
-        showToast(error.message || 'Erreur lors de la sauvegarde', 'error');
+        showToast(error.message, 'error');
         return false;
     }
 }
+async function deleteTeacher(cin) {
+    if (!confirm(`Voulez-vous vraiment supprimer l'enseignant ${cin} ?`)) {
+        return;
+    }
 
-async function deleteGrade(id) {
     try {
-        await fetchData(`/admin/grades/${id}`, 'DELETE');
-        showToast('Note supprimée');
-        loadGrades();
+        const response = await fetch(`/admin/teachers/${cin}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        const result = await response.json();
+        
+        if (response.ok) {
+            showToast(result.message, 'success');
+            loadTeachers(); // Rafraîchir la liste
+        } else {
+            throw new Error(result.error || 'Erreur de suppression');
+        }
     } catch (error) {
-        console.error('Erreur:', error);
-        showToast(error.message || 'Erreur lors de la suppression', 'error');
+        showToast(error.message, 'error');
     }
 }
 /////////// Edit student /////////////////
@@ -265,26 +283,28 @@ function renderStudentsTable(students) {
     });
 }
 
-function renderGradesTable(grades) {
-    const tbody = document.querySelector('#gradesTable tbody');
+function renderTeachersTable(teachers) {
+    const tbody = document.querySelector('#teachersTable tbody');
     tbody.innerHTML = '';
     
-    if (!grades || grades.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="4" style="text-align: center;">Aucune note trouvée</td></tr>';
+    if (!teachers || teachers.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Aucun enseignant trouvé</td></tr>';
         return;
     }
     
-    grades.forEach(grade => {
+    teachers.forEach(teacher => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td>${grade.CIN} - ${grade.etudiant_nom} ${grade.etudiant_prenom}</td>
-            <td>${grade.matiere_nom}</td>
-            <td>${grade.valeur}</td>
+            <td>${teacher.CIN}</td>
+            <td>${teacher.nom}</td>
+            <td>${teacher.prénom}</td>
+            <td>${teacher.email}</td>
+            <td>${teacher.grade || ''}</td>
             <td>
-                <button class="action-btn btn-edit edit-grade-btn" data-id="${grade.CIN}-${grade.matiere_id}">
+                <button class="action-btn btn-edit edit-teacher-btn" data-id="${teacher.CIN}">
                     <i class="fas fa-edit"></i> Modifier
                 </button>
-                <button class="action-btn btn-delete delete-grade-btn" data-id="${grade.CIN}-${grade.matiere_id}">
+                <button class="action-btn btn-delete delete-teacher-btn" data-id="${teacher.CIN}">
                     <i class="fas fa-trash-alt"></i> Supprimer
                 </button>
             </td>
@@ -292,14 +312,14 @@ function renderGradesTable(grades) {
         tbody.appendChild(tr);
     });
     
-    document.querySelectorAll('.edit-grade-btn').forEach(btn => {
-        btn.addEventListener('click', () => editGrade(btn.dataset.id));
+    document.querySelectorAll('.edit-teacher-btn').forEach(btn => {
+        btn.addEventListener('click', () => editTeacher(btn.dataset.id));
     });
     
-    document.querySelectorAll('.delete-grade-btn').forEach(btn => {
+    document.querySelectorAll('.delete-teacher-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            if (confirm('Êtes-vous sûr de vouloir supprimer cette note ?')) {
-                deleteGrade(btn.dataset.id);
+            if (confirm('Êtes-vous sûr de vouloir supprimer cet enseignant ?')) {
+                deleteTeacher(btn.dataset.id);
             }
         });
     });
@@ -342,19 +362,21 @@ function openStudentModal(student = null) {
     }, 10);
 }
 
-function openGradeModal(grade = null) {
-    const modal = document.getElementById('gradeModal');
-    const title = document.getElementById('gradeModalTitle');
+function openTeacherModal(teacher = null) {
+    const modal = document.getElementById('teacherModal');
+    const title = document.getElementById('teacherModalTitle');
     
-    if (grade) {
-        title.textContent = 'Modifier note';
-        document.getElementById('gradeId').value = grade.id;
-        document.getElementById('studentCin').value = grade.CIN;
-        document.getElementById('subjectId').value = grade.matiere_id;
-        document.getElementById('grade').value = grade.valeur;
+    if (teacher) {
+        title.textContent = 'Modifier enseignant';
+        document.getElementById('teacherId').value = teacher.CIN;
+        document.getElementById('teacherCin').value = teacher.CIN;
+        document.getElementById('teacherLastName').value = teacher.nom;
+        document.getElementById('teacherFirstName').value = teacher.prénom;
+        document.getElementById('teacherEmail').value = teacher.email;
+        document.getElementById('teacherGrade').value = teacher.grade;
     } else {
-        title.textContent = 'Ajouter note';
-        document.getElementById('gradeForm').reset();
+        title.textContent = 'Ajouter enseignant';
+        document.getElementById('teacherForm').reset();
     }
     
     modal.style.display = 'block';
@@ -394,54 +416,135 @@ async function handleStudentSubmit(e) {
     }
 }
 
-async function handleGradeSubmit(e) {
+async function handleTeacherSubmit(e) {
     e.preventDefault();
     
-    const gradeData = {
-        CIN: document.getElementById('studentCin').value,
-        matiere_id: document.getElementById('subjectId').value,
-        valeur: parseFloat(document.getElementById('grade').value)
+    const teacherData = {
+        CIN: document.getElementById('teacherCin').value,
+        nom: document.getElementById('teacherLastName').value,
+        prénom: document.getElementById('teacherFirstName').value,
+        email: document.getElementById('teacherEmail').value,
+        grade: document.getElementById('teacherGrade').value,
+        dateNaissance: document.getElementById('TbirthDate').value,
+        adresse: document.getElementById('Taddress').value,
+        departmentId: document.getElementById('teacherDepartment').value,
+        mdp: document.getElementById('teacherPassword').value || 'defaultPassword',
+        
+
     };
     
-    const isEdit = !!document.getElementById('gradeId').value;
+    const isEdit = !!document.getElementById('teacherId').value;
     
-    if (isEdit) {
-        gradeData.id = document.getElementById('gradeId').value;
+    if (await saveTeacher(teacherData, isEdit)) {
+        closeModal('teacherModal');
     }
-    
-    if (await saveGrade(gradeData, isEdit)) {
-        closeModal('gradeModal');
+}
+//////update////////
+async function editTeacher(cin) {
+    try {
+        showToast('Chargement des données enseignant...', 'info');
+        
+        const response = await fetch(`/admin/teachers/${cin}`);
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || 'Échec du chargement');
+        }
+
+        // Remplissage dynamique du formulaire
+        const fieldsMapping = {
+            'editTeacherCin': 'CIN',
+            'editTeacherNom': 'nom',
+            'editTeacherPrenom': 'prénom', 
+            'editTeacherEmail': 'email',
+            'editTeacherGrade': 'grade'
+        };
+
+        Object.entries(fieldsMapping).forEach(([id, field]) => {
+            const element = document.getElementById(id);
+            if (element) element.value = data[field] || '';
+        });
+
+        document.getElementById('editTeacherModal').style.display = 'block';
+        
+    } catch (error) {
+        console.error('Erreur détaillée:', error);
+        showToast(error.message, 'error');
+        
+        // Si l'enseignant n'existe plus, rafraîchir la liste
+        if (error.message.includes('non trouvé')) {
+            setTimeout(() => loadTeachers(), 2000);
+        }
     }
 }
 
+
+
+
+
+async function updateTeacher() {
+    const formData = {
+        CIN: document.getElementById('editTeacherCin').value,
+        nom: document.getElementById('editTeacherNom').value,
+        prénom: document.getElementById('editTeacherPrenom').value,
+        email: document.getElementById('editTeacherEmail').value,
+        grade: document.getElementById('editTeacherGrade').value
+    };
+
+    try {
+        const response = await fetch(`/admin/teachers/${formData.CIN}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'credentials': 'include'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(result.error || 'Échec de la mise à jour');
+        }
+
+        showToast('Enseignant mis à jour avec succès!', 'success');
+        document.getElementById('editTeacherModal').style.display = 'none';
+        loadTeachers(); // Rafraîchir la liste
+    } catch (error) {
+        console.error('Erreur updateTeacher:', error);
+        showToast(error.message || 'Erreur lors de la modification', 'error');
+    }
+}
 // Initialisation
 document.addEventListener('DOMContentLoaded', async () => {
     await checkAuth();
     
     // Chargement initial
     await loadStudents();
-    await loadGrades();
+    await loadTeachers();
     
     // Gestion des onglets
     document.getElementById('studentsTab').addEventListener('click', () => {
         document.getElementById('studentsSection').classList.add('active-section');
-        document.getElementById('gradesSection').classList.remove('active-section');
+        document.getElementById('teachersSection').classList.remove('active-section');
         document.getElementById('addStudentBtn').style.display = 'flex';
-        document.getElementById('addGradeBtn').style.display = 'none';
+        document.getElementById('addTeacherBtn').style.display = 'none';
         document.getElementById('pageTitle').textContent = 'Gestion des Étudiants';
     });
     
-    document.getElementById('gradesTab').addEventListener('click', () => {
-        document.getElementById('gradesSection').classList.add('active-section');
+    document.getElementById('teachersTab').addEventListener('click', () => {
+        document.getElementById('teachersSection').classList.add('active-section');
         document.getElementById('studentsSection').classList.remove('active-section');
         document.getElementById('addStudentBtn').style.display = 'none';
-        document.getElementById('addGradeBtn').style.display = 'flex';
-        document.getElementById('pageTitle').textContent = 'Gestion des Notes';
+        document.getElementById('addTeacherBtn').style.display = 'flex';
+        document.getElementById('pageTitle').textContent = 'Gestion des Enseignants';
     });
+    
+    
     
     // Boutons d'ajout
     document.getElementById('addStudentBtn').addEventListener('click', () => openStudentModal());
-    document.getElementById('addGradeBtn').addEventListener('click', () => openGradeModal());
+    document.getElementById('addTeacherBtn').addEventListener('click', () => openTeacherModal());
     
     // Déconnexion
     document.getElementById('logoutBtn').addEventListener('click', (e) => {
@@ -453,7 +556,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelectorAll('.close').forEach(btn => {
         btn.addEventListener('click', () => {
             closeModal('studentModal');
+            closeModal('teacherModal');
             closeModal('gradeModal');
+            closeModal('editModal');
+            closeModal('editTeacherModal');
         });
     });
     
@@ -462,20 +568,36 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (event.target === document.getElementById('studentModal')) {
             closeModal('studentModal');
         }
+        if (event.target === document.getElementById('teacherModal')) {
+            closeModal('teacherModal');
+        }
         if (event.target === document.getElementById('gradeModal')) {
             closeModal('gradeModal');
+        }
+        if (event.target === document.getElementById('editModal')) {
+            closeModal('editModal');
+        }
+        if (event.target === document.getElementById('editTeacherModal')) {
+            closeModal('editTeacherModal');
         }
     });
     
     // Soumission des formulaires
     document.getElementById('studentForm').addEventListener('submit', handleStudentSubmit);
-    document.getElementById('gradeForm').addEventListener('submit', handleGradeSubmit);
-    ///////////////this for update nfs5ouha ken zeyda ////////
-    // Écouteur pour le formulaire de modification
+    document.getElementById('teacherForm').addEventListener('submit', handleTeacherSubmit);
+    
+    // Écouteur pour le formulaire de modification étudiant
     document.getElementById('editStudentForm')?.addEventListener('submit', async (e) => {
         e.preventDefault();
         await updateStudent();
-        });
+    });
+
+    // Écouteur pour le formulaire de modification enseignant
+    document.getElementById('editTeacherForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await updateTeacher();
+    });
+
 
     // Fermeture du modal
     document.querySelector('#editModal .close-btn')?.addEventListener('click', () => {

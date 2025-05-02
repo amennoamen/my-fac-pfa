@@ -171,75 +171,148 @@ router.delete('/students/:cin', async (req, res) => {
   }
 });
 
-// Gestion des notes
-router.get('/grades', async (req, res) => {
-    try {
-        const [grades] = await db.query(`
-            SELECT n.*, m.nomMat as matiere_nom, p.nom as etudiant_nom, p.prénom as etudiant_prenom
-            FROM note n
-            JOIN matiere m ON n.matiere_id = m.idMat
-            JOIN etudiant e ON n.CIN = e.CIN
-            JOIN personne p ON e.CIN = p.CIN
-        `);
-        res.json(grades);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Erreur serveur' });
-    }
+// Gestion des teachers
+router.get('/teachers', async (req, res) => {
+  try {
+      const [teachers] = await db.query(`
+          SELECT p.*, e.grade 
+          FROM personne p
+          JOIN enseignant e ON p.CIN = e.CIN
+      `);
+      res.json(teachers);
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Erreur serveur' });
+  }
 });
 
-router.post('/grades', async (req, res) => {
-    const { CIN, matiere_id, valeur } = req.body;
+router.post('/teachers', async (req, res) => {
+  let connection;
+  try {
+      connection = await db.getConnection();
+      await connection.beginTransaction();
 
-    try {
-        const [result] = await db.query(
-            'INSERT INTO note (CIN, matiere_id, valeur) VALUES (?, ?, ?)',
-            [CIN, matiere_id, valeur]
-        );
-        res.status(201).json({ id: result.insertId });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Erreur serveur' });
-    }
+      const { CIN, nom, prénom, dateNaissance, email, adresse, mdp, grade , departmentId } = req.body;
+
+      // Vérification des données requises
+      if (!CIN || !nom || !prénom || !email || !mdp || !grade) {
+          throw new Error('Tous les champs obligatoires doivent être remplis');
+      }
+
+      // Insertion dans la table personne
+      await connection.query(
+          `INSERT INTO personne 
+           (CIN, nom, prénom, dateNaissance, email, adresse, mdp) 
+           VALUES (?, ?, ?, ?, ?, ?, ?)`,
+          [CIN, nom, prénom, dateNaissance || null, email, adresse || '', mdp]
+      );
+
+      // Insertion dans la table enseignant
+      await connection.query(
+          `INSERT INTO enseignant 
+           (CIN, grade,idDep) 
+           VALUES (?, ?,?)`,
+          [CIN, grade,departmentId]
+      );
+
+      await connection.commit();
+      res.status(201).json({ 
+          success: true,
+          message: `Enseignant ${nom} ${prénom} (CIN: ${CIN}) ajouté avec succès`
+      });
+  } catch (err) {
+      if (connection) await connection.rollback();
+      console.error('Erreur SQL:', err.sqlMessage, '\nRequête:', err.sql);
+      res.status(400).json({ 
+          error: err.message,
+          sqlError: err.sqlMessage 
+      });
+  } finally {
+      if (connection) connection.release();
+  }
+});
+router.put('/teachers/:cin', async (req, res) => {
+  const { CIN, nom, prénom, email, grade } = req.body;
+  let connection;
+
+  try {
+      connection = await db.getConnection();
+      await connection.beginTransaction();
+
+      // Mise à jour dans la table personne
+      await connection.query(
+          'UPDATE personne SET nom = ?, prénom = ?, email = ? WHERE CIN = ?',
+          [nom, prénom, email, req.params.cin]
+      );
+
+      // Mise à jour dans la table enseignant
+      await connection.query(
+          'UPDATE enseignant SET grade = ? WHERE CIN = ?',
+          [grade, req.params.cin]
+      );
+
+      await connection.commit();
+      res.json({ message: 'Enseignant mis à jour' });
+
+  } catch (err) {
+      if (connection) await connection.rollback();
+      console.error(err);
+      res.status(500).json({ error: 'Erreur serveur' });
+  } finally {
+      if (connection) connection.release();
+  }
 });
 
-router.put('/grades/:id', async (req, res) => {
-    const { CIN, matiere_id, valeur } = req.body;
+router.get('/teachers/:cin', async (req, res) => {
+  const { cin } = req.params;
+  
+  try {
+      const [rows] = await db.query(`
+          SELECT p.*, e.grade 
+          FROM personne p
+          JOIN enseignant e ON p.CIN = e.CIN
+          WHERE p.CIN = ?
+      `, [cin]);
 
-    try {
-        await db.query(
-            'UPDATE note SET CIN = ?, matiere_id = ?, valeur = ? WHERE CIN = ? AND matiere_id = ?',
-            [CIN, matiere_id, valeur, req.params.id.split('-')[0], req.params.id.split('-')[1]]
-        );
-        res.json({ message: 'Note mise à jour' });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Erreur serveur' });
-    }
+      if (rows.length === 0) {
+          return res.status(404).json({ error: 'Enseignant non trouvé' });
+      }
+
+      res.json(rows[0]);
+  } catch (err) {
+      res.status(500).json({ error: err.message });
+  }
 });
 
-router.delete('/grades/:id', async (req, res) => {
-    try {
-        await db.query(
-            'DELETE FROM note WHERE CIN = ? AND matiere_id = ?',
-            [req.params.id.split('-')[0], req.params.id.split('-')[1]]
-        );
-        res.json({ message: 'Note supprimée' });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Erreur serveur' });
-    }
+router.delete('/teachers/:cin', async (req, res) => {
+  const { cin } = req.params;
+  let connection;
+
+  try {
+      connection = await db.getConnection();
+      await connection.beginTransaction();
+
+      await connection.query('DELETE FROM enseignant WHERE CIN = ?', [cin]);
+      await connection.query('DELETE FROM personne WHERE CIN = ?', [cin]);
+
+      await connection.commit();
+      res.json({ 
+          success: true,
+          message: `Enseignant avec CIN ${cin} supprimé avec succès`
+      });
+  } catch (err) {
+      if (connection) await connection.rollback();
+      console.error('Erreur suppression:', err);
+      res.status(500).json({ 
+          success: false,
+          error: err.message,
+          sqlError: err.sqlMessage 
+      });
+  } finally {
+      if (connection) connection.release();
+  }
 });
 
-// Autres routes nécessaires
-router.get('/matieres', async (req, res) => {
-    try {
-        const [matieres] = await db.query('SELECT * FROM matiere');
-        res.json(matieres);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Erreur serveur' });
-    }
-});
+
 
 module.exports = router;
