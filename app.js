@@ -6,6 +6,8 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const adminRoutes = require('./routes/admin');
 const authRoutes = require('./routes/auth');
+const EtudiantRoutes = require('./routes/Etudiant');
+const authETRoutes = require('./routes/authEtudiant');
 
 const app = express();
 
@@ -48,6 +50,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes API
 app.use('/auth', authRoutes);
 app.use('/admin', adminRoutes);
+app.use('/Etudiant',EtudiantRoutes);
+app.use('/authEtudiant',authETRoutes);
 
 // Route de login admin - version corrigée
 app.get('/admin/login', (req, res) => {
@@ -64,16 +68,43 @@ app.get('/admin/login', (req, res) => {
   }
 });
 
+//route de login etudiant
+app.get('/Etudiant/loginEtudiant', (req, res) => {
+  const loginPath = path.join(__dirname, 'Etudiant', 'loginEtudiant.html');
+  console.log('Envoi du fichier login:', loginPath);
+  
+  // Vérification que le fichier existe
+  const fs = require('fs');
+  if (fs.existsSync(loginPath)) {
+    return res.sendFile(loginPath);
+  } else {
+    console.error('Fichier loginEtudiant.html introuvable dans le dossier etudiant');
+    return res.status(404).send('Page de login introuvable');
+  }
+});
+
 // Middleware pour empêcher l'accès direct aux fichiers HTML
 app.use('/admin', (req, res, next) => {
   if (req.path.endsWith('.html') && !req.path.endsWith('login.html')) {
     return res.redirect('/admin/login');
   }
   next();
-});
+})
+//empecher l'acces direct aux fichiers html
+app.use('/Etudiant', (req, res, next) => {
+  if (req.path.endsWith('.html') && !req.path.endsWith('loginEtudiant.html')) {
+    return res.redirect('/Etudiant/loginEtudiant');
+  }
+  next();
+})
 
 // Servir les fichiers statiques admin (sauf HTML)
 app.use('/admin', express.static(path.join(__dirname, 'admin'), {
+  index: false, // Désactive l'index automatique
+  extensions: ['html'] // Désactive l'extension automatique
+}));
+// Servir les fichiers statiques etudiant (sauf HTML)
+app.use('/Etudiant', express.static(path.join(__dirname, 'Etudiant'), {
   index: false, // Désactive l'index automatique
   extensions: ['html'] // Désactive l'extension automatique
 }));
@@ -93,12 +124,35 @@ app.use('/admin/*', (req, res, next) => {
   next();
 });
 
+// Modifiez la protection des routes etudiant comme suit :
+app.use('/Etudiant/*', (req, res, next) => {
+  console.log('Protection etudiant - Path:', req.path);
+  
+  // Liste des routes autorisées sans authentification
+  const allowedRoutes = ['/Etudiant/loginEtudiant', '/Etudiant/loginEtudiant.html', '/etudiant/api'];
+  
+  if (!req.session.user && !allowedRoutes.some(route => req.path.startsWith(route))) {
+    console.log('Redirection vers login - Non authentifié');
+    return res.redirect('/Etudiant/loginEtudiant');
+  }
+  
+  next();
+});
+
 // Modifiez la route /admin comme suit :
 app.get('/admin', (req, res) => {
   if (!req.session.user) {
     return res.redirect('/admin/login');
   }
   res.sendFile(path.join(__dirname, 'admin', 'adminPage.html'));
+});
+
+// Modifiez la route /etudiant comme suit :
+app.get('/etudiant', (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/Etudiant/loginEtudiant');
+  }
+  res.sendFile(path.join(__dirname, 'Etudiant', 'etudiantPage.html'));
 });
 // Route racine
 app.get('/', (req, res) => {
@@ -127,4 +181,5 @@ app.listen(PORT, () => {
   console.log(`Environnement: ${process.env.NODE_ENV || 'development'}`);
   console.log(`Accès admin: http://localhost:${PORT}/admin`);
   console.log(`Login admin: http://localhost:${PORT}/admin/login`);
+
 });
