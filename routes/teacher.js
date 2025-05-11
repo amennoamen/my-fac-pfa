@@ -3,28 +3,29 @@ const router = express.Router();
 const db = require('../models/db');
 
 // Middleware pour vérifier l'authentification enseignant bch ttfs5
-const isEtudiant = async (req, res, next) => {
+const isTeacher = async (req, res, next) => {
 
     next();
 };
 
-router.use(isEtudiant);
+router.use(isTeacher);
 
 // Route pour obtenir les infos de l'enseignant connecté
 router.get('/profile', async (req, res) => {
     try {
-        const [etudiants] = await db.query(`
-            SELECT p.*,e.numinscri,e.annéeEntrée
+        const [teacher] = await db.query(`
+            SELECT p.*, e.grade, d.nomDep as departement 
             FROM personne p
-            JOIN etudiant e ON p.CIN = e.CIN
+            JOIN enseignant e ON p.CIN = e.CIN
+            JOIN departement d ON e.idDep = d.idDep
             WHERE p.CIN = ?
-        `, [req.session.etudiant.CIN]);
+        `, [req.session.teacher.CIN]);
 
-        if (etudiants.length === 0) {
+        if (teacher.length === 0) {
             return res.status(404).json({ error: 'Enseignant non trouvé' });
         }
 
-        res.json(etudiants[0]);
+        res.json(teacher[0]);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Erreur serveur' });

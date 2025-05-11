@@ -3,14 +3,14 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const db = require('../models/db');
 
-router.post('/login-etudiant', async (req, res) => {
+router.post('/login-teacher', async (req, res) => {
     const { email, password } = req.body;
     
     try {
         const [users] = await db.query(`
-            SELECT p.*,e.numinscri,e.annéeEntrée
+            SELECT p.*, e.grade, e.idDep 
             FROM personne p
-            JOIN etudiant e ON p.CIN = e.CIN 
+            JOIN enseignant e ON p.CIN = e.CIN 
             WHERE p.email = ? AND p.mdp = ?`,  // Comparaison directe
             [email, password]);
             console.log('Résultat requête DB:', users);
@@ -23,20 +23,20 @@ router.post('/login-etudiant', async (req, res) => {
         }
 
         const user = users[0];
-    
+  
         // Session spécifique aux enseignants
-        req.session.etudiant = {
+        req.session.teacher = {
             CIN: user.CIN,
             email: user.email,
             nom: user.nom,
             prenom: user.prénom,
-            numinscri: user.numinscri,
-            annéeEntrée: user.annéeEntrée
+            grade: user.grade,
+            departement: user.departement
         };
 
         res.json({ 
             success: true,
-            redirect: '/etudiant', // Ajout de l'URL de redirection
+            redirect: '/teacher', // Ajout de l'URL de redirection
              user: { nom: user.nom, email: user.email }
         });
 

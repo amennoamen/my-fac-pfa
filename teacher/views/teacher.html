@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Enseignant</title>
+  <link rel="stylesheet" href="/teacher/css/teacher.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="teacher-container">
+        <header class="teacher-header">
+            <h1>Espace Enseignant</h1>
+            <nav>
+                <button id="profileBtn">Mon Profil</button>
+                <button id="matieresBtn">Mes Matières</button>
+                <button id="logoutBtn">Déconnexion</button>
+            </nav>
+        </header>
+        
+        <main class="teacher-main">
+            <section id="profileSection" class="active-section">
+                <h2>Mon Profil</h2>
+                <div class="profile-info">
+                    <div class="info-item">
+                        <span class="info-label">Nom:</span>
+                        <span id="teacherNom" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Prénom:</span>
+                        <span id="teacherPrenom" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Email:</span>
+                        <span id="teacherEmail" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Grade:</span>
+                        <span id="teacherGrade" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Département:</span>
+                        <span id="teacherDepartement" class="info-value"></span>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+        
+        <div id="toast" class="toast">
+            <span id="toastMessage"></span>
+        </div>
+    </div>
+
+      <script src="/teacher/js/teacher.js"></script>
+</body>
+</html>

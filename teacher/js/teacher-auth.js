@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('LoginForm');
+    const loginForm = document.getElementById('teacherLoginForm');
     const togglePassword = document.getElementById('togglePassword');
     const passwordInput = document.getElementById('password');
 
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('/auth/login-etudiant', { // Route corrigée
+            const response = await fetch('/auth/login-teacher', { // Route corrigée
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),
@@ -43,23 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 showError('Réponse inattendue du serveur');
             }
- 
+                /*localStorage.setItem('teacher', JSON.stringify(data.user));
+                window.location.href = data.redirect;*/
 
         } catch (error) {
             console.error('Erreur:', error);
             showError(error.message || 'Erreur de connexion');
         }
-    });
-     // Add animation to form inputs on focus
-    const inputs = document.querySelectorAll('.form-group input');
-    inputs.forEach(input => {
-        input.addEventListener('focus', function() {
-            this.parentElement.querySelector('.input-icon').style.color = 'var(--accent-color)';
-        });
-        
-        input.addEventListener('blur', function() {
-            this.parentElement.querySelector('.input-icon').style.color = 'var(--primary-color)';
-        });
     });
 });
 

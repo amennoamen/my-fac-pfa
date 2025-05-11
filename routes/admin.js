@@ -4,8 +4,7 @@ const db = require('../models/db');
 
 // Middleware pour vérifier l'authentification admin
 const isAdmin = async (req, res, next) => {
-    // Ici vous devriez vérifier si l'utilisateur est authentifié et est un admin
-    // Pour simplifier, nous allons considérer que tout accès à /admin est autorisé
+   
     next();
 };
 
@@ -84,7 +83,7 @@ router.post('/students', async (req, res) => {
         // 2. Démarrer la transaction
         await connection.beginTransaction();
 
-        // 3. Mettre à jour la personne  'UPDATE personne SET nom = ?, prénom = ?, dateNaissance = ?, email = ?, adresse = ?, mdp = ? WHERE CIN = ?',[nom, prénom, dateNaissance, email, adresse, mdp, req.params.cin]
+       
         await connection.query(
             'UPDATE personne SET nom = ?, prénom = ?, email = ?  WHERE CIN = ?',
             [nom, prénom,  email,  req.params.cin]

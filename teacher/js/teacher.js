@@ -1,4 +1,7 @@
 //verifi
+
+
+
 // Fonctions utilitaires
 async function fetchData(url, method = 'GET', data = null) {
     const options = {
@@ -36,7 +39,7 @@ function showToast(message, type = 'success') {
 // Fonction pour charger et afficher le profil de l'enseignant
 async function loadProfile() {
     try {
-        const response = await fetch('/etudiant/profile', {
+        const response = await fetch('/teacher/profile', {
             method: 'GET',
             credentials: 'include'
         });
@@ -48,12 +51,12 @@ async function loadProfile() {
         const data = await response.json();
         
         // Afficher les données dans la page
-        document.getElementById('etudiantNom').textContent = data.nom || 'Non disponible';
-        document.getElementById('etudiantPrenom').textContent = data.prénom || 'Non disponible';
-        document.getElementById('etudiantEmail').textContent = data.email || 'Non disponible';
-     document.getElementById('etudiantNumInscri').textContent = data.numinscri || 'Non disponible';
-    document.getElementById('etudiantAnneeEntree').textContent = data.annéeEntrée || 'Non disponible';
-       
+        document.getElementById('teacherNom').textContent = data.nom || 'Non disponible';
+        document.getElementById('teacherPrenom').textContent = data.prénom || 'Non disponible';
+        document.getElementById('teacherEmail').textContent = data.email || 'Non disponible';
+        document.getElementById('teacherGrade').textContent = data.grade || 'Non disponible';
+        document.getElementById('teacherDepartement').textContent = data.departement || 'Non disponible';
+
     } catch (error) {
         console.error('Erreur:', error);
         // Vous pouvez ajouter ici un affichage d'erreur simple
@@ -63,10 +66,19 @@ async function loadProfile() {
 
 // Initialisation de la page
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Chargement des données de l'etudiant...");
+    console.log("Chargement des données de l'enseignant...");
     loadProfile();
 });
 
+// Charger les matières de l'enseignant
+
+
+
+    
+ 
+
+// Voir les étudiants d'une matière
+// Déconnexion
 async function logout() {
     try {
         await fetch('/auth/logout', { 
@@ -82,13 +94,13 @@ async function logout() {
 
 // Initialisation
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log("Début de l'initialisation app.js");
+    console.log("Début de l'initialisation teacher.js");
     
     try {
         // Debug: Vérifiez si la session existe
         console.log("Envoi requête vérification auth...");
         
-        const response = await fetch('/etudiant/check-auth', {
+        const response = await fetch('/teacher/check-auth', {
             method: 'GET',
             credentials: 'include' // Essentiel pour les cookies
         });
@@ -97,7 +109,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (!response.ok) {
             console.log("Non authentifié, redirection...");
-            window.location.href = '/etudiant/login-etudiant';
+            window.location.href = '/teacher/login-teacher';
             return;
         }
 
@@ -108,7 +120,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         
     } catch (error) {
         console.error("Erreur vérification auth:", error);
-        window.location.href = '/etudiant/login-etudiant';
+        window.location.href = '/teacher/login-teacher';
     }
     // Charger les données initiales
     await loadProfile();
@@ -120,7 +132,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         loadProfile();
     });
     
- 
+    document.getElementById('matieresBtn').addEventListener('click', () => {
+        document.getElementById('matieresSection').classList.add('active-section');
+        document.getElementById('profileSection').classList.remove('active-section');
+        loadMatieres();
+    });
     
     // Déconnexion
     document.getElementById('logoutBtn').addEventListener('click', (e) => {

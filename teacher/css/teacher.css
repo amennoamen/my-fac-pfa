@@ -1,0 +1,359 @@
+/* Variables CSS pour une gestion des couleurs cohérente */
+:root {
+  --primary-color: #2563eb;
+  --primary-dark: #1d4ed8;
+  --secondary-color: #0f172a;
+  --accent-color: #3b82f6;
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --info-color: #0ea5e9;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --bg-light: #f8fafc;
+  --bg-white: #ffffff;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --transition: all 0.3s ease;
+}
+
+/* Reset et styles globaux */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* Layout principal */
+.teacher-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  min-height: 100vh;
+}
+
+/* En-tête amélioré */
+.teacher-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  background-color: var(--bg-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 1rem;
+  z-index: 10;
+}
+
+.teacher-header h1 {
+  color: var(--secondary-color);
+  font-size: 1.75rem;
+  font-weight: 700;
+  position: relative;
+}
+
+.teacher-header h1::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+}
+
+.teacher-header nav {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.teacher-header nav button {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.teacher-header nav button:hover {
+  color: var(--primary-color);
+  background-color: rgba(37, 99, 235, 0.1);
+}
+
+#logoutBtn {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--error-color);
+}
+
+#logoutBtn:hover {
+  background-color: rgba(239, 68, 68, 0.2);
+}
+
+/* Icônes pour les boutons */
+#profileBtn::before {
+  content: '\f007';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+}
+
+#matieresBtn::before {
+  content: '\f02d';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+}
+
+#logoutBtn::before {
+  content: '\f2f5';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+}
+
+/* Sections principales */
+.teacher-main section {
+  display: none;
+  background: var(--bg-white);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2rem;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.teacher-main section.active-section {
+  display: block;
+}
+
+.teacher-main h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--secondary-color);
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.75rem;
+  position: relative;
+}
+
+/* Profil amélioré */
+.profile-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.info-item {
+  background-color: rgba(241, 245, 249, 0.6);
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+  border-left: 4px solid var(--accent-color);
+}
+
+.info-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+
+.info-label {
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.info-value {
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+/* Tableaux améliorés */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 1.5rem;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+th, td {
+  padding: 1rem 1.25rem;
+  text-align: left;
+}
+
+th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+th:first-child {
+  border-top-left-radius: var(--radius-sm);
+}
+
+th:last-child {
+  border-top-right-radius: var(--radius-sm);
+}
+
+tr:nth-child(even) {
+  background-color: rgba(241, 245, 249, 0.5);
+}
+
+tr {
+  transition: var(--transition);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+tr:last-child {
+  border-bottom: none;
+}
+
+tr:hover {
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+.action-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-view {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.btn-view:hover {
+  background-color: #0ca678;
+  transform: translateY(-2px);
+}
+
+/* Toast notifications améliorées */
+.toast {
+  visibility: hidden;
+  min-width: 300px;
+  margin-left: -150px;
+  color: #fff;
+  text-align: center;
+  border-radius: var(--radius-md);
+  padding: 1rem 1.5rem;
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  bottom: 2rem;
+  font-size: 0.9375rem;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+.toast.show {
+  visibility: visible;
+  animation: slideUp 0.5s, slideDown 0.5s 2.5s;
+}
+
+@keyframes slideUp {
+  from { bottom: 0; opacity: 0; }
+  to { bottom: 2rem; opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { bottom: 2rem; opacity: 1; }
+  to { bottom: 0; opacity: 0; }
+}
+
+.toast.success {
+  background-color: var(--success-color);
+}
+
+.toast.error {
+  background-color: var(--error-color);
+}
+
+.toast.info {
+  background-color: var(--info-color);
+}
+
+.toast::before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  margin-right: 0.75rem;
+}
+
+.toast.success::before {
+  content: '\f058'; /* check-circle */
+}
+
+.toast.error::before {
+  content: '\f057'; /* times-circle */
+}
+
+.toast.info::before {
+  content: '\f05a'; /* info-circle */
+}
+
+/* Media queries pour la responsivité */
+@media (max-width: 768px) {
+  .teacher-header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .teacher-header nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .profile-info {
+    grid-template-columns: 1fr;
+  }
+  
+  .teacher-main section {
+    padding: 1.5rem;
+  }
+  
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+}
