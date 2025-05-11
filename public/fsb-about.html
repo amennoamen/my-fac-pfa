@@ -632,6 +632,99 @@
                 cursor: pointer;
             }
         }
+         
+
+
+        /* Calendar Section */
+.calendar-section {
+    background-color: var(--white);
+    padding: 60px 0;
+}
+
+.calendar-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--light);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.calendar-year {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.calendar-events {
+    display: grid;
+    gap: 20px;
+}
+
+.calendar-event {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    transition: var(--transition);
+    background-color: var(--white);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.calendar-event:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.event-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.event-day {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.event-month {
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.event-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+.event-info p {
+    color: var(--gray);
+    font-size: 0.95rem;
+}
+
+.calendar-download {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.calendar-download .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
 
 
     </style>
@@ -886,6 +979,106 @@
         </div>
     </section>
 
+
+    <!-- Calendar Section -->
+<section class="calendar-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Calendrier Universitaire</h2>
+            <p>Dates importantes de l'année académique en cours</p>
+        </div>
+        
+        <div class="calendar-container">
+            <div class="calendar-year">2024-2025</div>
+            
+            <div class="calendar-events">
+                <div class="calendar-event">
+                    <div class="event-date">
+                        <span class="event-day">15</span>
+                        <span class="event-month">Sept</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>Rentrée Universitaire</h3>
+                        <p>Début des cours pour toutes les filières</p>
+                    </div>
+                </div>
+                
+                <div class="calendar-event">
+                    <div class="event-date">
+                        <span class="event-day">01</span>
+                        <span class="event-month">Oct</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>Inscriptions Pédagogiques</h3>
+                        <p>Dernier délai pour les inscriptions pédagogiques</p>
+                    </div>
+                </div>
+                
+                <div class="calendar-event">
+                    <div class="event-date">
+                        <span class="event-day">15</span>
+                        <span class="event-month">Nov</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>Début des Travaux Dirigés</h3>
+                        <p>Mise en place des séances de TD pour tous les modules</p>
+                    </div>
+                </div>
+                
+                <div class="calendar-event">
+                    <div class="event-date">
+                        <span class="event-day">20</span>
+                        <span class="event-month">Déc</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>Examens Partiels</h3>
+                        <p>Session d'examens partiels pour tous les niveaux</p>
+                    </div>
+                </div>
+                
+                <div class="calendar-event">
+                    <div class="event-date">
+                        <span class="event-day">10</span>
+                        <span class="event-month">Jan</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>Début 2ème Semestre</h3>
+                        <p>Reprise des cours pour le deuxième semestre</p>
+                    </div>
+                </div>
+                
+                <div class="calendar-event">
+                    <div class="event-date">
+                        <span class="event-day">15</span>
+                        <span class="event-month">Mai</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>Examens Finaux</h3>
+                        <p>Session d'examens finaux pour tous les niveaux</p>
+                    </div>
+                </div>
+                
+                <div class="calendar-event">
+                    <div class="event-date">
+                        <span class="event-day">30</span>
+                        <span class="event-month">Juin</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>Délibérations</h3>
+                        <p>Publication des résultats finaux</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="calendar-download">
+                <a href="#" class="btn btn-primary">
+                    <i class="fas fa-download"></i> Télécharger le Calendrier Complet (PDF)
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
@@ -893,7 +1086,7 @@
                 <h2>Rejoignez notre communauté scientifique</h2>
                 <p>Découvrez nos programmes d'études, nos activités de recherche et comment devenir membre de notre communauté académique dynamique et innovante.</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary">Explorer nos formations</a>
+                    <a href="formation/improved-faculty-page-html.html" class="btn btn-primary">Explorer nos formations</a>
                     <a href="#" class="btn btn-secondary">Contacter l'administration</a>
                 </div>
             </div>

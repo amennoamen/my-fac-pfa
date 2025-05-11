@@ -155,7 +155,14 @@ body {
   padding-bottom: 0.75rem;
   position: relative;
 }
-
+.teacher-main a {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--secondary-color);
+  padding-bottom: 0.75rem;
+  position: relative;
+  text-decoration: none;
+}
 /* Profil amélioré */
 .profile-info {
   display: grid;
@@ -356,4 +363,51 @@ tr:hover {
     display: block;
     overflow-x: auto;
   }
+}
+
+/* Style pour la section Documents */
+.documents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.document-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.document-card:hover {
+    transform: translateY(-5px);
+}
+
+.pdf-icon {
+    font-size: 40px;
+    color: #e74c3c;
+    margin-bottom: 10px;
+}
+
+.document-card h3 {
+    margin: 10px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.download-btn {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.download-btn:hover {
+    background: #2980b9;
 }

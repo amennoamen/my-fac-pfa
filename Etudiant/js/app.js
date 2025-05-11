@@ -65,6 +65,30 @@ async function loadProfile() {
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Chargement des données de l'etudiant...");
     loadProfile();
+
+       document.getElementById('matieresBtn').addEventListener('click', () => {
+        document.getElementById('matieresSection').classList.add('active-section');
+        document.getElementById('profileSection').classList.remove('active-section');
+            document.getElementById('emploiSection').classList.remove('active-section');
+
+        
+    });
+    document.getElementById('emploiBtn').addEventListener('click', () => {
+    document.getElementById('emploiSection').classList.add('active-section');
+    document.getElementById('profileSection').classList.remove('active-section');
+    document.getElementById('matieresSection').classList.remove('active-section');
+    document.getElementById('documentsSection').classList.remove('active-section');
+
+    
+    // Ajoutez d'autres sections à masquer si nécessaire
+});
+document.getElementById('documentsBtn').addEventListener('click', () => {
+      document.getElementById('emploiSection').classList.remove('active-section');
+    document.getElementById('profileSection').classList.remove('active-section');
+    document.getElementById('matieresSection').classList.remove('active-section');
+    // Afficher la section documents
+    document.getElementById('documentsSection').classList.add('active-section');
+});
 });
 
 async function logout() {
@@ -117,6 +141,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('profileBtn').addEventListener('click', () => {
         document.getElementById('profileSection').classList.add('active-section');
         document.getElementById('matieresSection').classList.remove('active-section');
+        document.getElementById('emploiSection').classList.remove('active-section');
+            document.getElementById('documentsSection').classList.remove('active-section');
+
+
         loadProfile();
     });
     

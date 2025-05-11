@@ -13,7 +13,11 @@
             <h1>Espace Etudiant</h1>
             <nav>
                 <button id="profileBtn">Mon Profil</button>
-                <button id="matieresBtn">Mes Matières</button>
+                <button id="matieresBtn">Mes Notes</button>
+                <button id="emploiBtn" class="section-button">Emploi</button>
+                <button id="documentsBtn">Documents Utiles</button>
+
+
                 <button id="logoutBtn">Déconnexion</button>
             </nav>
         </header>
@@ -45,7 +49,104 @@
                   
                 </div>
             </section>
-            
+
+             <section id="matieresSection">
+                <h2 class="section-title"> Mes Notes</h2>
+                <a href="https://drive.google.com/drive/folders/1pn52Kah1ej8fKNQYR9Ji5ql42_FAxUZA" class="section-title">Voir les résultats 2024/2025</a>
+
+                
+                <div class="card">
+                    <h3 class="card-title">Liste des notes</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Matier</th>
+                                <th>Note</th>
+                                <th>Coefficient</th>
+                                <th>Crédits</th>
+                            </tr>
+                        </thead>
+                        <tbody id="matieresTableBody">
+                              <tr>
+                                <td>001</td>
+                                <td>Algorithm</td>
+                                <td>19</td>
+                                <td>2</td>
+                                <td>2</td>
+                            </tr>
+                            <!-- Le contenu sera rempli par JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="emploiSection" class="content-section">
+    <!-- Contenu de la section Emploi ici -->
+                 <h2>Section Emploi</h2>
+               <a href="https://drive.google.com/drive/folders/1NsPWjLSLUuYxnQDJi8yA2Pq7ApiLSBy7" >Voir l'emploi du temps</a>
+            </section>
+
+
+            <section id="documentsSection" class="content-section">
+    <h2>Documents Utiles</h2>
+    <div class="documents-grid">
+        <div class="document-card">
+            <i class="fas fa-file-pdf pdf-icon"></i>
+            <h3>سحب ترسيم</h3>
+            <a href="http://www.fsb.rnu.tn/images/doc-licence/doc_utiles/%D8%B3%D8%AD%D8%A8_%D8%AA%D8%B1%D8%B3%D9%8A%D9%85.pdf" target="_blank" class="download-btn">
+                <i class="fas fa-download"></i> Télécharger
+            </a>
+        </div>
+        
+        <div class="document-card">
+            <i class="fas fa-file-pdf pdf-icon"></i>
+            <h3>شهادة حضور</h3>
+            <a href="http://www.fsb.rnu.tn/images/doc-licence/doc_utiles/%D8%B4%D9%87%D8%A7%D8%AF%D8%A9_%D8%AD%D8%B6%D9%88%D8%B1.pdf" target="_blank" class="download-btn">
+                <i class="fas fa-download"></i> Télécharger
+            </a>
+        </div>
+        
+        <div class="document-card">
+            <i class="fas fa-file-pdf pdf-icon"></i>
+            <h3>شهادة مغادرة</h3>
+            <a href="http://www.fsb.rnu.tn/images/doc-licence/doc_utiles/%D8%B4%D9%87%D8%A7%D8%AF%D8%A9_%D9%85%D8%BA%D8%A7%D8%AF%D8%B1%D8%A9.pdf" target="_blank" class="download-btn">
+                <i class="fas fa-download"></i> Télécharger
+            </a>
+        </div>
+        
+        <div class="document-card">
+            <i class="fas fa-file-pdf pdf-icon"></i>
+            <h3>مطلب اجتياز امتحانات</h3>
+            <a href="http://www.fsb.rnu.tn/images/doc-licence/doc_utiles/%D9%85%D8%B7%D9%84%D8%A8_%D8%A7%D8%AC%D8%AA%D9%8A%D8%A7%D8%B2_%D8%A7%D9%85%D8%AA%D8%AD%D8%A7%D9%86%D8%A7%D8%AA.pdf" target="_blank" class="download-btn">
+                <i class="fas fa-download"></i> Télécharger
+            </a>
+        </div>
+        
+        <div class="document-card">
+            <i class="fas fa-file-pdf pdf-icon"></i>
+            <h3>مطلب في الحصول على ارصدة</h3>
+            <a href="http://www.fsb.rnu.tn/images/doc-licence/doc_utiles/%D9%85%D8%B7%D9%84%D8%A8_%D9%81%D9%8A_%D8%A7%D9%84%D8%AD%D8%B5%D9%88%D9%84_%D8%B9%D9%84%D9%89_%D8%A7%D8%B1%D8%B5%D8%AF%D8%A9.pdf" target="_blank" class="download-btn">
+                <i class="fas fa-download"></i> Télécharger
+            </a>
+        </div>
+        
+        <div class="document-card">
+            <i class="fas fa-file-pdf pdf-icon"></i>
+            <h3>مطلب في الحصول على شهادة في الترتيب</h3>
+            <a href="http://www.fsb.rnu.tn/images/doc-licence/doc_utiles/%D9%85%D8%B7%D9%84%D8%A8_%D9%81%D9%8A_%D8%A7%D9%84%D8%AD%D8%B5%D9%88%D9%84_%D8%B9%D9%84%D9%89_%D8%B4%D9%87%D8%A7%D8%AF%D8%A9_%D9%81%D9%8A_%D8%A7%D9%84%D8%AA%D8%B1%D8%AA%D9%8A%D8%A8.pdf" target="_blank" class="download-btn">
+                <i class="fas fa-download"></i> Télécharger
+            </a>
+        </div>
+        
+        <div class="document-card">
+            <i class="fas fa-file-pdf pdf-icon"></i>
+            <h3>نظير من شهادة علمية-نجاح-بطلقة اعداد</h3>
+            <a href="http://www.fsb.rnu.tn/images/doc-licence/doc_utiles/%D9%86%D8%B8%D9%8A%D8%B1_%D9%85%D9%86_%D8%B4%D9%87%D8%A7%D8%AF%D8%A9_%D8%B9%D9%84%D9%85%D9%8A%D8%A9-%D9%86%D8%AC%D8%A7%D8%AD-%D8%A8%D8%B7%D9%84%D9%82%D8%A9_%D8%A7%D8%B9%D8%AF%D8%A7%D8%AF.pdf" target="_blank" class="download-btn">
+                <i class="fas fa-download"></i> Télécharger
+            </a>
+        </div>
+    </div>
+</section>
         </main>
         
         <div id="toast" class="toast">
